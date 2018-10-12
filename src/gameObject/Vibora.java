@@ -95,6 +95,12 @@ public class Vibora {
 		
 	}
 	
+	public void removerCuerpo() {
+		
+		this.cuerpito.remove(this.cuerpito.size()-1);
+		
+	}
+	
 	void setRatioCrecimiento(int rand){
 		this.ratioCrecimiento = rand;
 	}
