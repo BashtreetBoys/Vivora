@@ -60,6 +60,8 @@ public class Cuerpo {
 		
 		this.posX=x;
 		this.posY=y;
+				
+		
 	}
 	
 	
