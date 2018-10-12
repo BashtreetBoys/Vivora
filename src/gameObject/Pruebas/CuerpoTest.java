@@ -10,7 +10,7 @@ public class CuerpoTest {
 		Cuerpo body = new Cuerpo (2,2);
 		body.movCuerpo(7, 7);
 		Assert.assertEquals(7,body.getPosY());
-		Assert.assertEquals(7,body.getPosX() );
+		Assert.assertEquals(7,body.getPosX());
 	}
 	
 
