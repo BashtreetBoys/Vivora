@@ -11,6 +11,21 @@ public class Obstaculo {
 		this.posXfin = posXfin;
 		this.posYini = posYini;
 		this.posYfin = posYfin;
-	}	
-	
+	}
+
+	public int getPosXini() {
+		return posXini;
+	}
+
+	public int getPosXfin() {
+		return posXfin;
+	}
+
+	public int getPosYini() {
+		return posYini;
+	}
+
+	public int getPosYfin() {
+		return posYfin;
+	}
 }

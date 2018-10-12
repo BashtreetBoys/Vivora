@@ -2,6 +2,7 @@ package gameObject;
 
 import java.util.ArrayList;
 
+
 public class Arena {
 	private int tamaño = 100;
 	private ArrayList<Vibora> viboras;
@@ -9,14 +10,43 @@ public class Arena {
 	private Fruta frutaActual;
 	private int lv;
 	private int cantidadFrutas;
-	public int getLv() {
-		return lv;
+	
+	public void agregarFruta(Fruta frutaNueva){
+		
+		/*Random*/
+		int x = (int) (Math.random() * tamaño) + 1; 
+		int y = (int) (Math.random() * tamaño) + 1; 
+		
+		while(verColision(x,y) != null){
+			
+			x = (int) (Math.random() * tamaño) + 1; 
+			y = (int) (Math.random() * tamaño) + 1; 
+		}
+		frutaNueva.setPosX(x);
+		frutaNueva.setPosY(y);
 	}
 
-	public void setLv(int lv) {
-		this.lv = lv;
+	public Object verColision(int x,int y){
+		
+		/*Verifica si hay una fruta en la posición*/
+		if(x==frutaActual.getPosX() && y==frutaActual.getPosY())//si es una fruta
+			return (Object)frutaActual;
+		
+		/*Verifica si hay un obstáculo en la posición*/
+	    for(int i=0;i<obstaculos.size();i++) {
+	    	
+	    	if(obstaculos.get(i).)
+	    	
+	        System.out.println(obstaculos.get(i));
+	      }
+	    
+		aarayslist con obstacluos 
+		
+		lista vivoras->cada cabeza y cada vivora y re visar x , y de todo
+		
+		return null;
 	}
-
+	
 	void agregarVibora(Vibora v) {
 		viboras.add(v);
 		int n;
@@ -110,5 +140,13 @@ public class Arena {
 			obstaculos.add(new Obstaculo(1,99,1,2));
 			break;
 		}
+	}
+	
+	public int getLv() {
+		return lv;
+	}
+
+	public void setLv(int lv) {
+		this.lv = lv;
 	}
 }
