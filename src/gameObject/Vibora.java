@@ -1,0 +1,94 @@
+package gameObject;
+
+import java.util.ArrayList;
+
+public class Vibora {
+	
+	private int velocidad;
+	private Cabeza cabeza;
+	private ArrayList<Cuerpo> cuerpito;
+	private int direccion;
+	private ArrayList posiciones;
+	private int ratioCrecimiento;
+	private boolean viva;
+	
+	public Vibora(int xIni,int yIni) {
+		this.velocidad = 1 ;
+		this.cabeza = new Cabeza();
+		this.cuerpito = new ArrayList<Cuerpo>();
+		this.posiciones = new ArrayList<>();
+		this.ratioCrecimiento=1;
+		this.viva = true;
+	}
+	
+	public void setVibora(int xIni, int yIni,int direccion) {
+		this.direccion = direccion;
+		cabeza.setPosX(xIni);
+		cabeza.setPosY(yIni);
+		this.posiciones.add(cabeza.getPosX());
+		this.posiciones.add(cabeza.getPosY());
+		if(this.direccion == 1) {
+			
+			cuerpito.add(new Cuerpo(cabeza.getPosX(),cabeza.getPosY()-1));
+			this.posiciones.add(cabeza.getPosX());
+			this.posiciones.add(cabeza.getPosY()-1);
+			cuerpito.add(new Cuerpo(cabeza.getPosX(),cabeza.getPosY()-2));
+			this.posiciones.add(cabeza.getPosX());
+			this.posiciones.add(cabeza.getPosY()-2);
+		}
+		else if(this.direccion == 2) {
+			
+			cuerpito.add(new Cuerpo(cabeza.getPosX()-1,cabeza.getPosY()));
+			this.posiciones.add(cabeza.getPosX()-1);
+			this.posiciones.add(cabeza.getPosY());
+			cuerpito.add(new Cuerpo(cabeza.getPosX()-2,cabeza.getPosY()));
+			this.posiciones.add(cabeza.getPosX()-2);
+			this.posiciones.add(cabeza.getPosY());
+			
+		}
+		else if(this.direccion == 3) {
+			
+			cuerpito.add(new Cuerpo(cabeza.getPosX(),cabeza.getPosY() + 1));
+			this.posiciones.add(cabeza.getPosX());
+			this.posiciones.add(cabeza.getPosY() + 1);
+			cuerpito.add(new Cuerpo(cabeza.getPosX(),cabeza.getPosY() + 2));
+			this.posiciones.add(cabeza.getPosX());
+			this.posiciones.add(cabeza.getPosY() + 2);
+		}
+		else if(this.direccion == 4) {
+			
+			cuerpito.add(new Cuerpo(cabeza.getPosX() + 1,cabeza.getPosY()));
+			this.posiciones.add(cabeza.getPosX() +1);
+			this.posiciones.add(cabeza.getPosY());
+			cuerpito.add(new Cuerpo(cabeza.getPosX() + 2,cabeza.getPosY()));
+			this.posiciones.add(cabeza.getPosX() + 2);
+			this.posiciones.add(cabeza.getPosY());
+		}
+			
+	}
+	
+	public void moverVibora(int direccion) {
+		
+	}
+	
+	public void crecer(int ratiocrecimiento) {
+		
+	}
+	
+	void setRatioCrecimiento(int rand){
+		this.ratioCrecimiento = rand;
+	}
+
+	public int getVelocidad() {
+		return velocidad;
+	}
+
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+	
+	public boolean isViva() {
+		return this.viva;
+	}
+	
+}
