@@ -55,7 +55,7 @@ public class Arena {
 		
 		//Agregat frutas
 		this.cantidadFrutas = 0;
-		//Aca habria que crear una fruta Alex tiene esta parte del codigo
+		//Aca habria que crearuna fruta Alex tiene esta parte del codigo
 		
 		//METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
 		ArrayList<Vibora> auxiliar = viboras;

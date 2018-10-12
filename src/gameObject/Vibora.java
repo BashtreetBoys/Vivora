@@ -12,6 +12,7 @@ public class Vibora {
 	private int ratioCrecimiento;
 	private boolean viva;
 	
+	
 	public Vibora(int xIni,int yIni) {
 		this.velocidad = 1 ;
 		this.cabeza = new Cabeza();
@@ -116,5 +117,4 @@ public class Vibora {
 	public boolean isViva() {
 		return this.viva;
 	}
-	
 }
