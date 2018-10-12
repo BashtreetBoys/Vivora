@@ -12,6 +12,7 @@ public class Vibora {
 	private int ratioCrecimiento;
 	private boolean viva;
 	
+
 	public Vibora(int xIni,int yIni) {
 		this.velocidad = 2 ;
 		this.cabeza = new Cabeza();
@@ -104,6 +105,10 @@ public class Vibora {
 	void setRatioCrecimiento(int rand){
 		this.ratioCrecimiento = rand;
 	}
+	public int getRatioCrecimiento() {
+		return ratioCrecimiento;
+	}
+
 
 	public int getVelocidad() {
 		return velocidad;
