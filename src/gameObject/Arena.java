@@ -101,6 +101,10 @@ public class Arena {
 			obstaculos.add(new Obstaculo(100,2,100,100));
 			obstaculos.add(new Obstaculo(99,100,1,100));
 			obstaculos.add(new Obstaculo(1,99,1,2));
+			obstaculos.add(new Obstaculo(2,20,50,20));
+			obstaculos.add(new Obstaculo(50,80,99,80));
+			obstaculos.add(new Obstaculo(30,99,30,30));
+			obstaculos.add(new Obstaculo(70,2,70,70));
 			break;
 		case 5:
 			obstaculos.clear();
@@ -108,6 +112,11 @@ public class Arena {
 			obstaculos.add(new Obstaculo(100,2,100,100));
 			obstaculos.add(new Obstaculo(99,100,1,100));
 			obstaculos.add(new Obstaculo(1,99,1,2));
+			obstaculos.add(new Obstaculo(25,15,75,15));
+			obstaculos.add(new Obstaculo(25,85,75,85));
+			obstaculos.add(new Obstaculo(24,16,24,84));
+			obstaculos.add(new Obstaculo(76,16,76,84));
+			
 			break;
 		}
 	}
