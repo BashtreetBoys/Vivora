@@ -55,7 +55,7 @@ public class Arena {
 		
 		//Agregar frutas
 		this.cantidadFrutas = 0;
-		//Aca habria que crearuna fruta Alex tiene esta parte del codigo
+		//Aca habria que crea fruta fruta Alex tiene esta parte del codigo
 		
 		//METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
 		ArrayList<Vibora> auxiliar = viboras;
@@ -84,6 +84,7 @@ public class Arena {
 			obstaculos.add(new Obstaculo(100,2,100,100));
 			obstaculos.add(new Obstaculo(99,100,1,100));
 			obstaculos.add(new Obstaculo(1,99,1,2));
+			obstaculos.add(new Obstaculo(20,50,80,50));
 			break;
 		case 3:
 			obstaculos.clear();
@@ -91,6 +92,8 @@ public class Arena {
 			obstaculos.add(new Obstaculo(100,2,100,100));
 			obstaculos.add(new Obstaculo(99,100,1,100));
 			obstaculos.add(new Obstaculo(1,99,1,2));
+			obstaculos.add(new Obstaculo(20,20,20,80));
+			obstaculos.add(new Obstaculo(80,20,80,80));
 			break;
 		case 4:
 			obstaculos.clear();
