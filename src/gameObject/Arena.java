@@ -53,7 +53,7 @@ public class Arena {
 
 	public void cambiarNivel() {
 		
-		//Agregat frutas
+		//Agregar frutas
 		this.cantidadFrutas = 0;
 		//Aca habria que crearuna fruta Alex tiene esta parte del codigo
 		
