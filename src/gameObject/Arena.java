@@ -32,7 +32,6 @@ public class Arena {
 			return (Object) frutaActual;
 
 		for (int i = 0; i < viboras.size(); i++) {
-
 			if (viboras.get(i).getCabeza().getPosX() == x && viboras.get(i).getCabeza().getPosY() == y)
 				return viboras.get(i).getClass();
 			for (int j = 0; j < viboras.get(i).getCuerpito().size(); j++)
