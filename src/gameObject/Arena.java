@@ -157,11 +157,18 @@ public class Arena {
 			break;
 		case 2:
 			obstaculos.clear();
+<<<<<<< HEAD
 			obstaculos.add(new Obstaculo(1, 1, 100, 1));
 			obstaculos.add(new Obstaculo(100, 2, 100, 100));
 			obstaculos.add(new Obstaculo(99, 100, 1, 100));
 			obstaculos.add(new Obstaculo(1, 99, 1, 2));
 			obstaculos.add(new Obstaculo(20, 50, 80, 50));
+=======
+			obstaculos.add(new Obstaculo(1,2,3,4));
+			obstaculos.add(new Obstaculo(100,2,100,100));
+			obstaculos.add(new Obstaculo(99,100,1,100));
+			obstaculos.add(new Obstaculo(1,99,1,2));
+>>>>>>> TesteocambiarNivel()
 			break;
 		case 3:
 			obstaculos.clear();
