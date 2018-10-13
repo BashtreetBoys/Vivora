@@ -16,15 +16,19 @@ public class ArenaTest {
 	Arena bg = new Arena ();
 	
 	bg.setLv(1);
-	//bg.agregarVibora(nueva);
-	//bg.agregarVibora(nueva2);
+
+	
 	bg.cambiarNivel();
-	int vib = bg.getViboras().size();
-	//System.out.println(vib);
-	//System.out.println(bg.getObstaculos().size());
-	/*Assert.assertEquals(2, bg.getViboras().size());
+	bg.agregarVibora(nueva);
+	Assert.assertEquals(1, bg.getViboras().size());
+	
 	Assert.assertEquals(4, bg.getObstaculos().size());
-	*/
+	/**
+	 * Corregir que pasa cuando agrego viboras antes de cambiar de nivel, parece que no le esta gustando la recorrida 
+	 * que hacen con la copia, entra en un loop infinito
+	 */
+	
+	
 	}
 
 }

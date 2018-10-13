@@ -72,7 +72,7 @@ public class Arena {
 		//METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
 		ArrayList<Vibora> auxiliar = viboras;
 		
-		for(int i=0; i < viboras.size(); i++) {
+		for(int i=0; i < auxiliar.size(); i++) {
 			if(viboras.get(i).isViva() == true)
 				auxiliar.add(viboras.get(i));
 		}
