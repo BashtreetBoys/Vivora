@@ -72,7 +72,6 @@ public class Arena {
 			break;
 		case 3:
 			v.setVibora(95, 50, 4);
-			/fdf
 			break;
 		case 4:
 			v.setVibora(95, 5, 4);
