@@ -24,24 +24,23 @@ public class Arena {
 		frutaNueva.setPosX(x);
 		frutaNueva.setPosY(y);
 	}
-
+	
 	public Object verColision(int x, int y) {
-
-		/* Verifica si hay una fruta en la posición */
-		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta // fruta
-			return (Object) frutaActual;
-
-		/* Verifica si hay un obstáculo en la posición */
-		for (int i = 0; i < obstaculos.size(); i++) {
-			int posXini = obstaculos.get(i).getPosXini();
-			int posYini = obstaculos.get(i).getPosYini();
-			int posXfin = obstaculos.get(i).getPosXfin();
-			int posYfin = obstaculos.get(i).getPosYfin();
-			
-			
-		}
-
-		// lista vivoras->cada cabeza y cada vivora y re visar x , y de todo
+//
+//		/* Verifica si hay una fruta en la posición */
+//		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta // fruta
+//			return (Object) frutaActual;
+//
+//		/* Verifica si hay un obstáculo en la posición */
+//		for (int i = 0; i < obstaculos.size(); i++) {
+//			int posXini = obstaculos.get(i).getPosXini();
+//			int posYini = obstaculos.get(i).getPosYini();
+//			int posXfin = obstaculos.get(i).getPosXfin();
+//			int posYfin = obstaculos.get(i).getPosYfin();
+//			
+//		}
+//
+//		// lista vivoras->cada cabeza y cada vivora y re visar x , y de todo
 
 		return null;
 	}
