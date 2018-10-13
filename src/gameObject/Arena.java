@@ -93,7 +93,7 @@ public class Arena {
 
 		// Agregar frutas
 		this.cantidadFrutas = 0;
-		// Aca habria que crea fruta fruta Alex tiene esta parte del codigo
+		this.agregarFruta(frutaActual);
 
 		// METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
 		ArrayList<Vibora> auxiliar = viboras;
