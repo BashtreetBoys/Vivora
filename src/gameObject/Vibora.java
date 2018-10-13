@@ -143,32 +143,4 @@ public class Vibora {
 	public boolean isViva() {
 		return this.viva;
 	}
-
-	public Cabeza getCabeza() {
-		return cabeza;
-	}
-
-	public void setCabeza(Cabeza cabeza) {
-		this.cabeza = cabeza;
-	}
-
-	public ArrayList<Cuerpo> getCuerpito() {
-		return cuerpito;
-	}
-
-	public void setCuerpito(ArrayList<Cuerpo> cuerpito) {
-		this.cuerpito = cuerpito;
-	}
-
-	public ArrayList getPosiciones() {
-		return posiciones;
-	}
-
-	public void setPosiciones(ArrayList posiciones) {
-		this.posiciones = posiciones;
-	}
-
-	public void setViva(boolean viva) {
-		this.viva = viva;
-	}
 }
