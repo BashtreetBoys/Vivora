@@ -31,7 +31,7 @@ public class Arena {
 		if(x==frutaActual.getPosX() && y==frutaActual.getPosY())//si es una fruta
 			return (Object)frutaActual;
 		
-		/*Verifica si hay un obstáculo en la posición*/
+		/*Verifica si hay un obstáculo en la posició*/
 	    for(int i=0;i<obstaculos.size();i++) {
 	    	int posXini=obstaculos.get(i).getPosXini();
 	    	int posYini=obstaculos.get(i).getPosYini();
@@ -72,6 +72,7 @@ public class Arena {
 			break;
 		case 3:
 			v.setVibora(95, 50, 4);
+			/fdf
 			break;
 		case 4:
 			v.setVibora(95, 5, 4);
