@@ -26,39 +26,59 @@ public class Arena {
 	}
 
 	public Object verColision(int x, int y) {
-	
-			/* Verifica si hay una fruta en la posición */
-			if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta															// fruta
-				return (Object) frutaActual;
 
-			/* Verifica si hay un obstáculo en la posición */
-			for (int i = 0; i < obstaculos.size(); i++) {
-				int posXini = obstaculos.get(i).getPosXini();
-				int posYini = obstaculos.get(i).getPosYini();
-				int posXfin = obstaculos.get(i).getPosXfin();
-				int posYfin = obstaculos.get(i).getPosYfin();
-	
-				if (posXini == posXfin)// Si están en el mismo nivel
-				{
-					while(posYini != posYfin){
-						
-						if (posXini == x && obstaculos.get(i).getPosYini() == y)
-							return (Object) obstaculos.get(i);
-						
-						if (posXfin == x && obstaculos.get(i).getPosYfin() == y)
-							return (Object) obstaculos.get(i);
-						
-						posYini++;
-					}
-	
-	
-					// lista vivoras->cada cabeza y cada vivora y re visar x , y de todo
-				}
-			}
-		
+		/* Verifica si hay una fruta en la posición */
+		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())
+			return (Object) frutaActual;
+
+		for (int i = 0; i < viboras.size(); i++) {
+
+			if (viboras.get(i).getCabeza().getPosX() == x && viboras.get(i).getCabeza().getPosY() == y)
+				return viboras.get(i).getClass();
+			for (int j = 0; j < viboras.get(i).getCuerpito().size(); j++)
+				if (viboras.get(i).getCuerpito().get(i).getPosX() == x
+						&& viboras.get(i).getCuerpito().get(i).getPosY() == y)
+					return viboras.get(i).getClass();
+		}
 		return null;
 	}
 
+	boolean colisionarFruta(Vibora vibora, Fruta fruta) {
+
+		if (vibora.getCabeza().getPosX() == fruta.getPosX() && vibora.getCabeza().getPosY() == fruta.getPosY()) {
+				vibora.crecer();
+//			if(vibora.getEstado){
+//			
+//			}
+			return true;
+		}
+		return false;
+	}
+
+	boolean colisionarObstaculo(Vibora vibora, Obstaculo obsta) {
+
+		return false;
+	}
+
+	boolean colisionarVibora(Vibora viboraColisionaCon, Vibora vibora) {
+
+		int cabezaEnX = viboraColisionaCon.getCabeza().getPosX();
+		int cabezaEnY = viboraColisionaCon.getCabeza().getPosY();
+
+		if (cabezaEnX == vibora.getCabeza().getPosX() && cabezaEnY == vibora.getCabeza().getPosY()) {
+
+			viboraColisionaCon.setViva(false); // muere
+			return true;
+		}
+
+		for (int i = 0; i < vibora.getCuerpito().size(); i++) {
+			if (vibora.getCuerpito().get(i).getPosX() == cabezaEnX
+					&& vibora.getCuerpito().get(i).getPosX() == cabezaEnY)
+			viboraColisionaCon.setViva(false); // muere
+			return true;
+		}
+		return false;
+	}
 
 	void agregarVibora(Vibora v) {
 		viboras.add(v);
