@@ -160,13 +160,13 @@ public class Vibora {
 		this.cuerpito = cuerpito;
 	}
 
-	public ArrayList getPosiciones() {
-		return posiciones;
-	}
-
-	public void setPosiciones(ArrayList posiciones) {
-		this.posiciones = posiciones;
-	}
+//	public ArrayList getPosiciones() {
+//		return posiciones;
+//	}
+//
+//	public void setPosiciones(ArrayList posiciones) {
+//		this.posiciones = posiciones;
+//	}
 
 	public void setViva(boolean viva) {
 		this.viva = viva;
