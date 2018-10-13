@@ -17,45 +17,15 @@ public class Obstaculo {
 		return posXini;
 	}
 
-<<<<<<< HEAD
-=======
-	public void setPosXini(int posXini) {
-		this.posXini = posXini;
-	}
-
->>>>>>> origin/Test
 	public int getPosXfin() {
 		return posXfin;
 	}
 
-<<<<<<< HEAD
-=======
-	public void setPosXfin(int posXfin) {
-		this.posXfin = posXfin;
-	}
-
->>>>>>> origin/Test
 	public int getPosYini() {
 		return posYini;
 	}
 
-<<<<<<< HEAD
 	public int getPosYfin() {
 		return posYfin;
 	}
-=======
-	public void setPosYini(int posYini) {
-		this.posYini = posYini;
-	}
-
-	public int getPosYfin() {
-		return posYfin;
-	}
-
-	public void setPosYfin(int posYfin) {
-		this.posYfin = posYfin;
-	}	
-	
-	
->>>>>>> origin/Test
 }

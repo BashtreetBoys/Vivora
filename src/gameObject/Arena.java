@@ -9,7 +9,6 @@ public class Arena {
 	private Fruta frutaActual;
 	private int lv;
 	private int cantidadFrutas;
-<<<<<<< HEAD
 
 	public void agregarFruta(Fruta frutaNueva) {
 
@@ -24,22 +23,6 @@ public class Arena {
 		}
 		frutaNueva.setPosX(x);
 		frutaNueva.setPosY(y);
-=======
-	
-	
-	public Arena() {
-		super();
-		this.tamaño = 100;
-		this.viboras = new ArrayList<Vibora>();
-		this.obstaculos = new ArrayList<Obstaculo>();
-		this.frutaActual = new Fruta();
-		this.lv = 1;
-		this.cantidadFrutas = 0;
-	}
-
-	public int getLv() {
-		return lv;
->>>>>>> origin/Test
 	}
 
 	public Object verColision(int x,int y){
@@ -72,7 +55,7 @@ public class Arena {
 		return null;
 	}
 
-	public void agregarVibora(Vibora v) {
+	void agregarVibora(Vibora v) {
 		viboras.add(v);
 		int n;
 		n = viboras.indexOf(v);
@@ -114,15 +97,9 @@ public class Arena {
 
 		// METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
 		ArrayList<Vibora> auxiliar = viboras;
-<<<<<<< HEAD
 
 		for (int i = 0; i < viboras.size(); i++) {
 			if (viboras.get(i).isViva() == true)
-=======
-		
-		for(int i=0; i < auxiliar.size(); i++) {
-			if(viboras.get(i).isViva() == true)
->>>>>>> origin/Test
 				auxiliar.add(viboras.get(i));
 		}
 
@@ -172,7 +149,6 @@ public class Arena {
 			break;
 		}
 	}
-<<<<<<< HEAD
 
 	public int getLv() {
 		return lv;
@@ -181,26 +157,4 @@ public class Arena {
 	public void setLv(int lv) {
 		this.lv = lv;
 	}
-=======
-	
-	//getters para las pruebas, no sirven para mucho pero bueno
-	public ArrayList<Vibora> getViboras() {
-		return viboras;
-	}
-
-	public void setViboras(ArrayList<Vibora> viboras) {
-		this.viboras = viboras;
-	}
-
-	public ArrayList<Obstaculo> getObstaculos() {
-		return obstaculos;
-	}
-
-	public void setObstaculos(ArrayList<Obstaculo> obstaculos) {
-		this.obstaculos = obstaculos;
-	}
-	
-
-	
->>>>>>> origin/Test
 }

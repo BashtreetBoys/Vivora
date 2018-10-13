@@ -36,11 +36,6 @@ public class Jugador {
 	public void salirDeArena(Arena a) {
 		System.out.println("Sali de la arena jaj.");
 	}
-	
-
-	public Vibora getVivorita() {
-		return vivorita;
-	}
 
 	public String getNombre() {
 		return nombre;
