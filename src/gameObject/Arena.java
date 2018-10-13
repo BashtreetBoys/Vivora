@@ -98,6 +98,7 @@ public class Arena {
 		return false;
 	}
 
+	
 	public void agregarVibora(Vibora v) {
 		viboras.add(v);
 		int n;
