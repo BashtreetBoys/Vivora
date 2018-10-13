@@ -1,5 +1,8 @@
 package gameObject.Pruebas;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import gameObject.Arena;
 import gameObject.Vibora;
@@ -30,5 +33,47 @@ public class ArenaTest {
 	
 	
 	}
+	
+	@Test
+	public void cambioDeNivelObstaculos() {
+		Arena arenita = new Arena();
+		ArrayList<Obstaculo> obs = new ArrayList<Obstaculo>();
+		
+		obs.clear();
+		obs.add(new Obstaculo(1,1,100,1));
+		obs.add(new Obstaculo(100,2,100,100));
+		obs.add(new Obstaculo(99,100,1,100));
+		obs.add(new Obstaculo(1,99,1,2));
+		arenita.setObstaculos(obs);
+		
+		Assert.assertEquals(1, arenita.getLv());
+		int i = 0;
+		for(Obstaculo ob : obs) {
+			Assert.assertEquals(obs.get(i).getPosXfin(),arenita.getObstaculos().get(i).getPosXfin(),0.0);
+			Assert.assertEquals(obs.get(i).getPosYfin(),arenita.getObstaculos().get(i).getPosYfin(),0.0);
+			Assert.assertEquals(obs.get(i).getPosXini(),arenita.getObstaculos().get(i).getPosXini(),0.0);
+			Assert.assertEquals(obs.get(i).getPosYini(),arenita.getObstaculos().get(i).getPosYini(),0.0);
+			i++;
+		
+		}
 
+		arenita.setLv(2);
+		obs.clear();
+		obs.add(new Obstaculo(1,2,3,4));
+		obs.add(new Obstaculo(100,2,100,100));
+		obs.add(new Obstaculo(99,100,1,100));
+		obs.add(new Obstaculo(1,99,1,2));
+		arenita.setObstaculos(obs);
+		Assert.assertEquals(2, arenita.getLv());
+		i = 0;
+		for(Obstaculo ob : obs) {
+			Assert.assertEquals(obs.get(i).getPosXfin(),arenita.getObstaculos().get(i).getPosXfin(),0.0);
+			Assert.assertEquals(obs.get(i).getPosYfin(),arenita.getObstaculos().get(i).getPosYfin(),0.0);
+			Assert.assertEquals(obs.get(i).getPosXini(),arenita.getObstaculos().get(i).getPosXini(),0.0);
+			Assert.assertEquals(obs.get(i).getPosYini(),arenita.getObstaculos().get(i).getPosYini(),0.0);
+			i++;
+		
+		}
+	}
+	
 }

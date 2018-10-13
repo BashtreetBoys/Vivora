@@ -92,7 +92,7 @@ public class Arena {
 			break;
 		case 2:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1,1,100,1));
+			obstaculos.add(new Obstaculo(1,2,3,4));
 			obstaculos.add(new Obstaculo(100,2,100,100));
 			obstaculos.add(new Obstaculo(99,100,1,100));
 			obstaculos.add(new Obstaculo(1,99,1,2));
