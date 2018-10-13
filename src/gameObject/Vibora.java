@@ -8,7 +8,7 @@ public class Vibora {
 	private Cabeza cabeza;
 	private ArrayList<Cuerpo> cuerpito;
 	private int direccion;
-	private ArrayList posiciones;
+	//private ArrayList posiciones;
 	private int ratioCrecimiento;
 	private boolean viva;
 	
@@ -92,7 +92,7 @@ public class Vibora {
 		
 }
 	
-	public void crecer(int dir) {
+	public void crecer() {
 		
 		for(int i=0;i<this.ratioCrecimiento;i++) {
 		
