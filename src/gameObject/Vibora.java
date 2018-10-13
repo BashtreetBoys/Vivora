@@ -14,7 +14,7 @@ public class Vibora {
 	
 
 	public Vibora(int xIni,int yIni) {
-		this.velocidad = 2 ;
+		this.velocidad = 1 ;
 		this.cabeza = new Cabeza();
 		this.cuerpito = new ArrayList<Cuerpo>();
 		//this.posiciones = new ArrayList<>();
@@ -93,7 +93,27 @@ public class Vibora {
 }
 	
 	public void crecer(int ratiocrecimiento) {
+		for(int i=0;i<this.ratioCrecimiento;i++) {
+			
+			Cuerpo anteultimo = this.cuerpito.get(this.cuerpito.size()-2);
+			Cuerpo ultimo = this.cuerpito.get(this.cuerpito.size()-1);
 		
+			if(((this.cuerpito.get(this.cuerpito.size()-2).getPosY()==this.cuerpito.get(this.cuerpito.size()-1).getPosY())) && this.cuerpito.get(this.cuerpito.size()-2).getPosX()>this.cuerpito.get(this.cuerpito.size()-1).getPosX()) {
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX()-1, ultimo.getPosY()));
+			}
+		
+			else if((anteultimo.getPosY()==ultimo.getPosY()) && anteultimo.getPosX()<ultimo.getPosX()) {
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX()+1, ultimo.getPosY()));
+			}
+		
+			else if((anteultimo.getPosX()==ultimo.getPosX()) && anteultimo.getPosY()<ultimo.getPosY()) {
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY()+1));
+			}
+		
+			else if((anteultimo.getPosX()==ultimo.getPosX()) && anteultimo.getPosY()>ultimo.getPosY()) {
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY()-1));
+			}
+		}
 	}
 	
 	public void removerCuerpo() {

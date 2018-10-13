@@ -35,7 +35,7 @@ public class ArenaTest {
 	}
 	
 	@Test
-	public void cambioDeNivelObstaculos() {
+	public void cambioDeNivel() {
 		Arena arenita = new Arena();
 		ArrayList<Obstaculo> obs = new ArrayList<Obstaculo>();
 		
