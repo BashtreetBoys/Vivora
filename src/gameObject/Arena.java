@@ -2,7 +2,6 @@ package gameObject;
 
 import java.util.ArrayList;
 
-
 public class Arena {
 	private int tamaño = 100;
 	private ArrayList<Vibora> viboras;
@@ -10,17 +9,17 @@ public class Arena {
 	private Fruta frutaActual;
 	private int lv;
 	private int cantidadFrutas;
-	
-	public void agregarFruta(Fruta frutaNueva){
-		
-		/*Random*/
-		int x = (int) (Math.random() * tamaño) + 1; 
-		int y = (int) (Math.random() * tamaño) + 1; 
-		
-		while(verColision(x,y) != null){
-			
-			x = (int) (Math.random() * tamaño) + 1; 
-			y = (int) (Math.random() * tamaño) + 1; 
+
+	public void agregarFruta(Fruta frutaNueva) {
+
+		/* Random */
+		int x = (int) (Math.random() * tamaño) + 1;
+		int y = (int) (Math.random() * tamaño) + 1;
+
+		while (verColision(x, y) != null) {
+
+			x = (int) (Math.random() * tamaño) + 1;
+			y = (int) (Math.random() * tamaño) + 1;
 		}
 		frutaNueva.setPosX(x);
 		frutaNueva.setPosY(y);
@@ -34,19 +33,28 @@ public class Arena {
 		
 		/*Verifica si hay un obstáculo en la posición*/
 	    for(int i=0;i<obstaculos.size();i++) {
+	    	int posXini=obstaculos.get(i).getPosXini();
+	    	int posYini=obstaculos.get(i).getPosYini();
+	    	int posXfin=obstaculos.get(i).getPosXfin();
+	    	int posYfin=obstaculos.get(i).getPosYfin();
 	    	
-	    	//if(obstaculos.get(i).)
-	    	
-	        System.out.println(obstaculos.get(i));
-	      }
-	    
-		//aarayslist con obstacluos 
+	    	if(posXini==posXfin)//Si están en el mismo nivel
+    		{
+	    		if(obstaculos.get(i).getPosXini()==x && obstaculos.get(i).getPosYini()== y)
+	    			return (Object)obstaculos.get(i);
+	    		
+	    		if(obstaculos.get(i).getPosXfin()==x && obstaculos.get(i).getPosYfin()== y)
+	    			return (Object)obstaculos.get(i);
+	    		
+    		
+    		}	  		
+	    }
 		
 		//lista vivoras->cada cabeza y cada vivora y re visar x , y de todo
 		
 		return null;
 	}
-	
+
 	void agregarVibora(Vibora v) {
 		viboras.add(v);
 		int n;
@@ -82,75 +90,66 @@ public class Arena {
 	}
 
 	public void cambiarNivel() {
-		
-		//Agregar frutas
+
+		// Agregar frutas
 		this.cantidadFrutas = 0;
-		//Aca habria que crea fruta fruta Alex tiene esta parte del codigo
-		
-		//METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
+		// Aca habria que crea fruta fruta Alex tiene esta parte del codigo
+
+		// METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
 		ArrayList<Vibora> auxiliar = viboras;
-		
-		for(int i=0; i < viboras.size(); i++) {
-			if(viboras.get(i).isViva() == true)
+
+		for (int i = 0; i < viboras.size(); i++) {
+			if (viboras.get(i).isViva() == true)
 				auxiliar.add(viboras.get(i));
 		}
-		
-		for(int i=0; i < auxiliar.size(); i++) {
+
+		for (int i = 0; i < auxiliar.size(); i++) {
 			this.agregarVibora(auxiliar.get(i));
 		}
-		
-		//AGREGO LOS OBSTACULOS DEL NIVEL ACTUAL
+
+		// AGREGO LOS OBSTACULOS DEL NIVEL ACTUAL
 		switch (lv) {
 		case 1:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1,1,100,1));
-			obstaculos.add(new Obstaculo(100,2,100,100));
-			obstaculos.add(new Obstaculo(99,100,1,100));
-			obstaculos.add(new Obstaculo(1,99,1,2));
+			obstaculos.add(new Obstaculo(1, 1, 100, 1));
+			obstaculos.add(new Obstaculo(100, 2, 100, 100));
+			obstaculos.add(new Obstaculo(99, 100, 1, 100));
+			obstaculos.add(new Obstaculo(1, 99, 1, 2));
 			break;
 		case 2:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1,1,100,1));
-			obstaculos.add(new Obstaculo(100,2,100,100));
-			obstaculos.add(new Obstaculo(99,100,1,100));
-			obstaculos.add(new Obstaculo(1,99,1,2));
-			obstaculos.add(new Obstaculo(20,50,80,50));
+			obstaculos.add(new Obstaculo(1, 1, 100, 1));
+			obstaculos.add(new Obstaculo(100, 2, 100, 100));
+			obstaculos.add(new Obstaculo(99, 100, 1, 100));
+			obstaculos.add(new Obstaculo(1, 99, 1, 2));
+			obstaculos.add(new Obstaculo(20, 50, 80, 50));
 			break;
 		case 3:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1,1,100,1));
-			obstaculos.add(new Obstaculo(100,2,100,100));
-			obstaculos.add(new Obstaculo(99,100,1,100));
-			obstaculos.add(new Obstaculo(1,99,1,2));
-			obstaculos.add(new Obstaculo(20,20,20,80));
-			obstaculos.add(new Obstaculo(80,20,80,80));
+			obstaculos.add(new Obstaculo(1, 1, 100, 1));
+			obstaculos.add(new Obstaculo(100, 2, 100, 100));
+			obstaculos.add(new Obstaculo(99, 100, 1, 100));
+			obstaculos.add(new Obstaculo(1, 99, 1, 2));
+			obstaculos.add(new Obstaculo(20, 20, 20, 80));
+			obstaculos.add(new Obstaculo(80, 20, 80, 80));
 			break;
 		case 4:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1,1,100,1));
-			obstaculos.add(new Obstaculo(100,2,100,100));
-			obstaculos.add(new Obstaculo(99,100,1,100));
-			obstaculos.add(new Obstaculo(1,99,1,2));
-			obstaculos.add(new Obstaculo(2,20,50,20));
-			obstaculos.add(new Obstaculo(50,80,99,80));
-			obstaculos.add(new Obstaculo(30,99,30,30));
-			obstaculos.add(new Obstaculo(70,2,70,70));
+			obstaculos.add(new Obstaculo(1, 1, 100, 1));
+			obstaculos.add(new Obstaculo(100, 2, 100, 100));
+			obstaculos.add(new Obstaculo(99, 100, 1, 100));
+			obstaculos.add(new Obstaculo(1, 99, 1, 2));
 			break;
 		case 5:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1,1,100,1));
-			obstaculos.add(new Obstaculo(100,2,100,100));
-			obstaculos.add(new Obstaculo(99,100,1,100));
-			obstaculos.add(new Obstaculo(1,99,1,2));
-			obstaculos.add(new Obstaculo(25,15,75,15));
-			obstaculos.add(new Obstaculo(25,85,75,85));
-			obstaculos.add(new Obstaculo(24,16,24,84));
-			obstaculos.add(new Obstaculo(76,16,76,84));
-			
+			obstaculos.add(new Obstaculo(1, 1, 100, 1));
+			obstaculos.add(new Obstaculo(100, 2, 100, 100));
+			obstaculos.add(new Obstaculo(99, 100, 1, 100));
+			obstaculos.add(new Obstaculo(1, 99, 1, 2));
 			break;
 		}
 	}
-	
+
 	public int getLv() {
 		return lv;
 	}
