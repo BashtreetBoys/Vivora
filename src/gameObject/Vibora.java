@@ -171,4 +171,11 @@ public class Vibora {
 	public void setViva(boolean viva) {
 		this.viva = viva;
 	}
+	
+	public void morir() {
+		cuerpito.clear();
+		cabeza.setPosX(-100);
+		cabeza.setPosY(-100);
+	}
+	
 }

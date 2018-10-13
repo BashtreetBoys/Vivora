@@ -73,9 +73,9 @@ public class Arena {
 		this.cantidadFrutas++;
 	}
 
-	boolean colisionarObstaculo(Vibora vibora, Obstaculo obsta) {
-
-		return false;
+	public void colisionarConViboraOObstaculo(Vibora vibora) {
+		vibora.setViva(false);
+		vibora.morir();
 	}
 
 	boolean colisionarVibora(Vibora viboraColisionaCon, Vibora vibora) {
