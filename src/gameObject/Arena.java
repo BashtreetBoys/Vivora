@@ -26,39 +26,25 @@ public class Arena {
 	}
 
 	public Object verColision(int x, int y) {
-	
-			/* Verifica si hay una fruta en la posición */
-			if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta															// fruta
-				return (Object) frutaActual;
 
-			/* Verifica si hay un obstáculo en la posición */
-			for (int i = 0; i < obstaculos.size(); i++) {
-				int posXini = obstaculos.get(i).getPosXini();
-				int posYini = obstaculos.get(i).getPosYini();
-				int posXfin = obstaculos.get(i).getPosXfin();
-				int posYfin = obstaculos.get(i).getPosYfin();
-	
-				if (posXini == posXfin)// Si están en el mismo nivel
-				{
-					while(posYini != posYfin){
-						
-						if (posXini == x && obstaculos.get(i).getPosYini() == y)
-							return (Object) obstaculos.get(i);
-						
-						if (posXfin == x && obstaculos.get(i).getPosYfin() == y)
-							return (Object) obstaculos.get(i);
-						
-						posYini++;
-					}
-	
-	
-					// lista vivoras->cada cabeza y cada vivora y re visar x , y de todo
-				}
-			}
-		
+		/* Verifica si hay una fruta en la posición */
+		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta // fruta
+			return (Object) frutaActual;
+
+		/* Verifica si hay un obstáculo en la posición */
+		for (int i = 0; i < obstaculos.size(); i++) {
+			int posXini = obstaculos.get(i).getPosXini();
+			int posYini = obstaculos.get(i).getPosYini();
+			int posXfin = obstaculos.get(i).getPosXfin();
+			int posYfin = obstaculos.get(i).getPosYfin();
+			
+			
+		}
+
+		// lista vivoras->cada cabeza y cada vivora y re visar x , y de todo
+
 		return null;
 	}
-
 
 	void agregarVibora(Vibora v) {
 		viboras.add(v);
@@ -104,6 +90,7 @@ public class Arena {
 		ArrayList<Vibora> auxiliar = viboras;
 
 		for (int i = 0; i < viboras.size(); i++) {
+			viboras.get(i).resetearCuerpo();
 			if (viboras.get(i).isViva() == true)
 				auxiliar.add(viboras.get(i));
 		}
