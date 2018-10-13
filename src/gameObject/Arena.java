@@ -12,7 +12,7 @@ public class Arena {
 
 	public void agregarFruta(Fruta frutaNueva) {
 
-		/* Random */
+		/* Randomm */
 		int x = (int) (Math.random() * tamaño) + 1;
 		int y = (int) (Math.random() * tamaño) + 1;
 
