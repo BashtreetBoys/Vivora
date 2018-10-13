@@ -9,6 +9,18 @@ public class Arena {
 	private Fruta frutaActual;
 	private int lv;
 	private int cantidadFrutas;
+	
+	
+	public Arena() {
+		super();
+		this.tamaño = 100;
+		this.viboras = new ArrayList<Vibora>();
+		this.obstaculos = new ArrayList<Obstaculo>();
+		this.frutaActual = new Fruta();
+		this.lv = 1;
+		this.cantidadFrutas = 0;
+	}
+
 	public int getLv() {
 		return lv;
 	}
@@ -17,7 +29,7 @@ public class Arena {
 		this.lv = lv;
 	}
 
-	void agregarVibora(Vibora v) {
+	public void agregarVibora(Vibora v) {
 		viboras.add(v);
 		int n;
 		n = viboras.indexOf(v);
@@ -108,4 +120,24 @@ public class Arena {
 			break;
 		}
 	}
+	
+	//getters para las pruebas, no sirven para mucho pero bueno
+	public ArrayList<Vibora> getViboras() {
+		return viboras;
+	}
+
+	public void setViboras(ArrayList<Vibora> viboras) {
+		this.viboras = viboras;
+	}
+
+	public ArrayList<Obstaculo> getObstaculos() {
+		return obstaculos;
+	}
+
+	public void setObstaculos(ArrayList<Obstaculo> obstaculos) {
+		this.obstaculos = obstaculos;
+	}
+	
+
+	
 }
