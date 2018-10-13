@@ -66,16 +66,11 @@ public class Arena {
 		return null;
 	}
 
-	boolean colisionarFruta(Vibora vibora, Fruta fruta) {
-
-		if (vibora.getCabeza().getPosX() == fruta.getPosX() && vibora.getCabeza().getPosY() == fruta.getPosY()) {
-				//vibora.crecer();
-//			if(vibora.getEstado){
-//			
-//			}
-			return true;
-		}
-		return false;
+	public void colisionarFruta(Vibora vibora) {
+		
+		vibora.crecer();
+		this.agregarFruta(frutaActual);
+		this.cantidadFrutas++;
 	}
 
 	boolean colisionarObstaculo(Vibora vibora, Obstaculo obsta) {
@@ -139,10 +134,6 @@ public class Arena {
 
 	public void cambiarNivel() {
 
-		// Agregar frutas
-		this.cantidadFrutas = 0;
-		this.agregarFruta(frutaActual);
-
 		// METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
 		ArrayList<Vibora> auxiliar = viboras;
 
@@ -196,6 +187,11 @@ public class Arena {
 			obstaculos.add(new Obstaculo(1, 99, 1, 2));
 			break;
 		}
+		
+		// Agregar frutas
+		this.cantidadFrutas = 0;
+		this.agregarFruta(frutaActual);
+
 	}
 
 	public int getLv() {
