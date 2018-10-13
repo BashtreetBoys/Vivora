@@ -28,8 +28,32 @@ public class Arena {
 	public Object verColision(int x, int y) {
 
 		/* Verifica si hay una fruta en la posición */
-		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())
-			return (Object) frutaActual;
+		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta // fruta
+			return frutaActual.getClass();
+
+		/* Verifica si hay un obstáculo en la posición */
+		for (int i = 0; i < obstaculos.size(); i++) {
+			int posXini = obstaculos.get(i).getPosXini();
+			int posYini = obstaculos.get(i).getPosYini();
+			int posXfin = obstaculos.get(i).getPosXfin();
+			int posYfin = obstaculos.get(i).getPosYfin();
+			
+			if(posXini == posXfin) {
+				if(posXini == x) {
+					if(y>=posYini && y<=posYfin)
+						return obstaculos.get(i).getClass();
+				}
+			}
+			
+			if(posYini == posYfin) {
+				if(posYini == y) {
+					if(x>=posXini && x<=posXfin)
+						return obstaculos.get(i).getClass();
+				}
+			}
+			
+		}
+
 
 		for (int i = 0; i < viboras.size(); i++) {
 
@@ -46,7 +70,7 @@ public class Arena {
 	boolean colisionarFruta(Vibora vibora, Fruta fruta) {
 
 		if (vibora.getCabeza().getPosX() == fruta.getPosX() && vibora.getCabeza().getPosY() == fruta.getPosY()) {
-				vibora.crecer();
+				//vibora.crecer();
 //			if(vibora.getEstado){
 //			
 //			}
