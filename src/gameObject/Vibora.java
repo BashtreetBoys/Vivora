@@ -12,9 +12,13 @@ public class Vibora {
 	private int ratioCrecimiento;
 	private boolean viva;
 	
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> origin/Test
 	public Vibora(int xIni,int yIni) {
-		this.velocidad = 1 ;
+		this.velocidad = 2 ;
 		this.cabeza = new Cabeza();
 		this.cuerpito = new ArrayList<Cuerpo>();
 		//this.posiciones = new ArrayList<>();
@@ -118,14 +122,18 @@ public class Vibora {
 	}
 	
 	public void removerCuerpo() {
-		
+		if(this.cuerpito.size()>0) {
 		this.cuerpito.remove(this.cuerpito.size()-1);
-		
+		}
 	}
 	
 	void setRatioCrecimiento(int rand){
 		this.ratioCrecimiento = rand;
 	}
+	public int getRatioCrecimiento() {
+		return ratioCrecimiento;
+	}
+
 
 	public int getVelocidad() {
 		return velocidad;
