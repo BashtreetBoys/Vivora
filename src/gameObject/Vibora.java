@@ -11,10 +11,9 @@ public class Vibora {
 	//private ArrayList posiciones;
 	private int ratioCrecimiento;
 	private boolean viva;
-	
-	
+
 	public Vibora(int xIni,int yIni) {
-		this.velocidad = 1 ;
+		this.velocidad = 2;
 		this.cabeza = new Cabeza();
 		this.cuerpito = new ArrayList<Cuerpo>();
 		//this.posiciones = new ArrayList<>();
@@ -92,16 +91,9 @@ public class Vibora {
 		
 }
 	
-<<<<<<< HEAD
 	public void crecer() {
-		
-		for(int i=0;i<this.ratioCrecimiento;i++) {
-		
-=======
-	public void crecer(int ratiocrecimiento) {
 		for(int i=0;i<this.ratioCrecimiento;i++) {
 			
->>>>>>> TestVibora
 			Cuerpo anteultimo = this.cuerpito.get(this.cuerpito.size()-2);
 			Cuerpo ultimo = this.cuerpito.get(this.cuerpito.size()-1);
 		
@@ -112,19 +104,11 @@ public class Vibora {
 			else if((anteultimo.getPosY()==ultimo.getPosY()) && anteultimo.getPosX()<ultimo.getPosX()) {
 				this.cuerpito.add(new Cuerpo(ultimo.getPosX()+1, ultimo.getPosY()));
 			}
-<<<<<<< HEAD
 		
 			else if((anteultimo.getPosX()==ultimo.getPosX()) && anteultimo.getPosY()<ultimo.getPosY()) {
 				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY()+1));
 			}
 		
-=======
-		
-			else if((anteultimo.getPosX()==ultimo.getPosX()) && anteultimo.getPosY()<ultimo.getPosY()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY()+1));
-			}
-		
->>>>>>> TestVibora
 			else if((anteultimo.getPosX()==ultimo.getPosX()) && anteultimo.getPosY()>ultimo.getPosY()) {
 				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY()-1));
 			}
@@ -134,12 +118,6 @@ public class Vibora {
 	
 	public void removerCuerpo() {
 		this.cuerpito.remove(this.cuerpito.size()-1);	
-	}
-	
-	public void resetearCuerpo() {
-		for(int i=0; i<this.cuerpito.size()-3;i++) {
-			this.removerCuerpo();
-		}
 	}
 	
 	void setRatioCrecimiento(int rand){
@@ -185,11 +163,21 @@ public class Vibora {
 	public void setViva(boolean viva) {
 		this.viva = viva;
 	}
-	
+		
 	public void morir() {
 		cuerpito.clear();
 		cabeza.setPosX(-100);
 		cabeza.setPosY(-100);
+		this.setViva(false);
 	}
+	public void resetearCuerpo() {
+		int n = this.cuerpito.size();
+		//Se fija que borre todos los cuerpitos excepto los ultimos 2
+			for(int i=0; i<n-2;i++) {
+				this.removerCuerpo();
+			}
+		
+	}
+
 	
 }

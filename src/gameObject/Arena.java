@@ -10,6 +10,7 @@ public class Arena {
 	private int lv;
 	private int cantidadFrutas;
 
+
 	public void agregarFruta(Fruta frutaNueva) {
 
 		/* Randomm */
@@ -66,6 +67,20 @@ public class Arena {
 		return null;
 	}
 
+
+
+	
+	
+	public Arena() {
+		super();
+		this.tamaño =100;
+		this.viboras = new ArrayList<Vibora>();
+		this.obstaculos = new ArrayList<Obstaculo>();
+		this.lv=1;
+		this.frutaActual=new Fruta();
+		
+	}
+
 	public void colisionarFruta(Vibora vibora) {
 		
 		vibora.crecer();
@@ -90,13 +105,15 @@ public class Arena {
 		}
 
 		for (int i = 0; i < vibora.getCuerpito().size(); i++) {
-			if (vibora.getCuerpito().get(i).getPosX() == cabezaEnX
-					&& vibora.getCuerpito().get(i).getPosX() == cabezaEnY)
-			viboraColisionaCon.setViva(false); // muere
-			return true;
+			if (vibora.getCuerpito().get(i).getPosX() == cabezaEnX	&& vibora.getCuerpito().get(i).getPosX() == cabezaEnY) {
+	
+				viboraColisionaCon.setViva(false); // muere
+				return true;				
+			}
 		}
 		return false;
 	}
+
 
 	public void agregarVibora(Vibora v) {
 		viboras.add(v);
@@ -135,17 +152,18 @@ public class Arena {
 	public void cambiarNivel() {
 
 		// METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
-		ArrayList<Vibora> auxiliar = viboras;
+		ArrayList<Vibora> auxiliar = new ArrayList <Vibora>();
 
 		for (int i = 0; i < viboras.size(); i++) {
+			viboras.get(i).resetearCuerpo();
 			if (viboras.get(i).isViva() == true)
 				auxiliar.add(viboras.get(i));
 		}
-
+		viboras.clear();
 		for (int i = 0; i < auxiliar.size(); i++) {
 			this.agregarVibora(auxiliar.get(i));
 		}
-
+		
 		// AGREGO LOS OBSTACULOS DEL NIVEL ACTUAL
 		switch (lv) {
 		case 1:
@@ -162,7 +180,6 @@ public class Arena {
 			obstaculos.add(new Obstaculo(99, 100, 1, 100));
 			obstaculos.add(new Obstaculo(1, 99, 1, 2));
 			obstaculos.add(new Obstaculo(20, 50, 80, 50));
-
 			break;
 		case 3:
 			obstaculos.clear();
@@ -192,7 +209,18 @@ public class Arena {
 		// Agregar frutas
 		this.cantidadFrutas = 0;
 		this.agregarFruta(frutaActual);
+	}
 
+	public int getTamaño() {
+		return tamaño;
+	}
+
+	public void setTamaño(int tamaño) {
+		this.tamaño = tamaño;
+	}
+
+	public ArrayList<Vibora> getViboras() {
+		return viboras;
 	}
 
 	public int getLv() {
@@ -203,8 +231,20 @@ public class Arena {
 		this.lv = lv;
 	}
 
-	public ArrayList<Vibora> getViboras() {
-		return viboras;
+	public Fruta getFrutaActual() {
+		return frutaActual;
+	}
+
+	public void setFrutaActual(Fruta frutaActual) {
+		this.frutaActual = frutaActual;
+	}
+
+	public int getCantidadFrutas() {
+		return cantidadFrutas;
+	}
+
+	public void setCantidadFrutas(int cantidadFrutas) {
+		this.cantidadFrutas = cantidadFrutas;
 	}
 
 	public ArrayList<Obstaculo> getObstaculos() {
