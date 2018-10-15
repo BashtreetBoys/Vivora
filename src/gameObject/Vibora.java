@@ -13,8 +13,12 @@ public class Vibora {
 	private boolean viva;
 	
 
+	public void setViva(boolean viva) {
+		this.viva = viva;
+	}
+
 	public Vibora(int xIni,int yIni) {
-		this.velocidad = 1 ;
+		this.velocidad = 2;
 		this.cabeza = new Cabeza();
 		this.cuerpito = new ArrayList<Cuerpo>();
 		//this.posiciones = new ArrayList<>();
@@ -92,7 +96,7 @@ public class Vibora {
 		
 }
 	
-	public void crecer(int ratiocrecimiento) {
+	public void crecer() {
 		for(int i=0;i<this.ratioCrecimiento;i++) {
 			
 			Cuerpo anteultimo = this.cuerpito.get(this.cuerpito.size()-2);
@@ -117,7 +121,7 @@ public class Vibora {
 	}
 	
 	public void removerCuerpo() {
-		if(this.cuerpito.size()>0) {
+		if(this.cuerpito.size()>2) {
 		this.cuerpito.remove(this.cuerpito.size()-1);
 		}
 	}
@@ -141,5 +145,30 @@ public class Vibora {
 	public boolean isViva() {
 		return this.viva;
 	}
+	
+	public void morir() {
+		cuerpito.clear();
+		cabeza.setPosX(-100);
+		cabeza.setPosY(-100);
+		this.setViva(false);
+	}
+
+	public Cabeza getCabeza() {
+		return cabeza;
+	}
+
+	public ArrayList<Cuerpo> getCuerpito() {
+		return cuerpito;
+	}
+	
+	public void resetearCuerpo() {
+		int n = this.cuerpito.size();
+		//Se fija que borre todos los cuerpitos excepto los ultimos 2
+			for(int i=0; i<n-2;i++) {
+				this.removerCuerpo();
+			}
+		
+	}
+
 	
 }
