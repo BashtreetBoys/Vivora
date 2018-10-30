@@ -11,7 +11,6 @@ public class Jugador {
 	private String nombre;
 	private String estado; //Estado que indica "Jugando" "Listo" "No Jugando".
 	private Vibora vivorita; 
-	private String contraseña; //Al realizar la clase "Usuario" eliminar este parámetro de esta clase.
 	private int puntaje;
 	
 	/**
