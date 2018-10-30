@@ -24,7 +24,6 @@ public class Jugador {
 		this.nombre = nombre;
 		this.estado = estado;
 		this.vivorita = vivorita;
-		this.contraseña = contraseña;
 		this.puntaje = 0;
 	}
 	
@@ -52,9 +51,6 @@ public class Jugador {
 		this.estado = estado;
 	}
 
-	public String getContraseña() {
-		return contraseña;
-	}
 
 	public int getPuntaje() {
 		return puntaje;
