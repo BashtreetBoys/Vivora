@@ -7,6 +7,7 @@ import java.lang.invoke.SwitchPoint;
  * @author MDS7.
  *
  */
+@SuppressWarnings("unused")
 public class Jugador {
 	private String nombre;
 	private String estado; //Estado que indica "Jugando" "Listo" "No Jugando".
