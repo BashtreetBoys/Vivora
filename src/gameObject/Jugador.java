@@ -18,7 +18,6 @@ public class Jugador {
 	 * @param nombre Nombre del jugador.
 	 * @param estado Estado del jugador, "Jugando"/"Listo"/"No Jugando".
 	 * @param vivorita La vivora asignada al jugador.
-	 * @param contraseña Contraseña perteneciente a la cuenta del jugador.
 	 */
 	public Jugador(String nombre, String estado, Vibora vivorita, String contraseña) {
 		this.nombre = nombre;
