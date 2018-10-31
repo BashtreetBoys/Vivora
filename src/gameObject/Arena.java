@@ -10,7 +10,15 @@ public class Arena {
 	private int lv;
 	private int cantidadFrutas;
 
-
+	public Arena() {
+		super();
+		this.tamaño = 100;
+		this.viboras = new ArrayList<Vibora>();
+		this.obstaculos = new ArrayList<Obstaculo>();
+		this.lv = 1;
+		this.frutaActual = new Fruta();
+	}
+	
 	public void agregarFruta(Fruta frutaNueva) {
 
 		/* Randomm */
@@ -38,23 +46,22 @@ public class Arena {
 			int posYini = obstaculos.get(i).getPosYini();
 			int posXfin = obstaculos.get(i).getPosXfin();
 			int posYfin = obstaculos.get(i).getPosYfin();
-			
-			if(posXini == posXfin) {
-				if(posXini == x) {
-					if(y>=posYini && y<=posYfin)
-						return obstaculos.get(i).getClass();
-				}
-			}
-			
-			if(posYini == posYfin) {
-				if(posYini == y) {
-					if(x>=posXini && x<=posXfin)
-						return obstaculos.get(i).getClass();
-				}
-			}
-			
-		}
 
+			if (posXini == posXfin) {
+				if (posXini == x) {
+					if (y >= posYini && y <= posYfin)
+						return obstaculos.get(i).getClass();
+				}
+			}
+
+			if (posYini == posYfin) {
+				if (posYini == y) {
+					if (x >= posXini && x <= posXfin)
+						return obstaculos.get(i).getClass();
+				}
+			}
+
+		}
 
 		for (int i = 0; i < viboras.size(); i++) {
 			if (viboras.get(i).getCabeza().getPosX() == x && viboras.get(i).getCabeza().getPosY() == y)
@@ -67,22 +74,8 @@ public class Arena {
 		return null;
 	}
 
-
-
-	
-	
-	public Arena() {
-		super();
-		this.tamaño =100;
-		this.viboras = new ArrayList<Vibora>();
-		this.obstaculos = new ArrayList<Obstaculo>();
-		this.lv=1;
-		this.frutaActual=new Fruta();
-		
-	}
-
 	public void colisionarFruta(Vibora vibora) {
-		
+
 		vibora.crecer();
 		this.agregarFruta(frutaActual);
 		this.cantidadFrutas++;
@@ -105,15 +98,15 @@ public class Arena {
 		}
 
 		for (int i = 0; i < vibora.getCuerpito().size(); i++) {
-			if (vibora.getCuerpito().get(i).getPosX() == cabezaEnX	&& vibora.getCuerpito().get(i).getPosX() == cabezaEnY) {
-	
+			if (vibora.getCuerpito().get(i).getPosX() == cabezaEnX
+					&& vibora.getCuerpito().get(i).getPosX() == cabezaEnY) {
+
 				viboraColisionaCon.setViva(false); // muere
-				return true;				
+				return true;
 			}
 		}
 		return false;
 	}
-
 
 	public void agregarVibora(Vibora v) {
 		viboras.add(v);
@@ -152,7 +145,7 @@ public class Arena {
 	public void cambiarNivel() {
 
 		// METO LAS SERPIENTES QUE DEBEN EMPEZAR EN ESTE NIVEL
-		ArrayList<Vibora> auxiliar = new ArrayList <Vibora>();
+		ArrayList<Vibora> auxiliar = new ArrayList<Vibora>();
 
 		for (int i = 0; i < viboras.size(); i++) {
 			viboras.get(i).resetearCuerpo();
@@ -163,7 +156,7 @@ public class Arena {
 		for (int i = 0; i < auxiliar.size(); i++) {
 			this.agregarVibora(auxiliar.get(i));
 		}
-		
+
 		// AGREGO LOS OBSTACULOS DEL NIVEL ACTUAL
 		switch (lv) {
 		case 1:
@@ -205,7 +198,7 @@ public class Arena {
 			obstaculos.add(new Obstaculo(1, 99, 1, 2));
 			break;
 		}
-		
+
 		// Agregar frutas
 		this.cantidadFrutas = 0;
 		this.agregarFruta(frutaActual);
