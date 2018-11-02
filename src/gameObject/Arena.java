@@ -139,7 +139,6 @@ public class Arena {
 			v.setVibora(5, 50, 2);
 			break;
 		}
-
 	}
 
 	public void cambiarNivel() {

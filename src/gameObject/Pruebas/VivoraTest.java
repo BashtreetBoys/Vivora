@@ -14,7 +14,7 @@ public class VivoraTest {
 	public void crearViboras(){
 		Vibora vib = new Vibora(1,1);
 		
-		Cabeza cabecita = new Cabeza();
+		Cabeza cabecita = new Cabeza(20);
 		cabecita.setPosX(1);
 		cabecita.setPosY(1);
 		
@@ -45,7 +45,7 @@ public class VivoraTest {
 	public void achicarVibora(){
 		Vibora vib = new Vibora(1,1);
 		
-		Cabeza cabecita = new Cabeza();
+		Cabeza cabecita = new Cabeza(20);
 		cabecita.setPosX(1);
 		cabecita.setPosY(1);
 		
@@ -67,7 +67,7 @@ public class VivoraTest {
 	public void resetarVibora(){
 		Vibora vib = new Vibora(1,1);
 		
-		Cabeza cabecita = new Cabeza();
+		Cabeza cabecita = new Cabeza(20);
 		cabecita.setPosX(1);
 		cabecita.setPosY(1);
 		
@@ -91,7 +91,7 @@ public class VivoraTest {
 	public void matarVibora(){
 	Vibora vib = new Vibora(1,1);
 	
-	Cabeza cabecita = new Cabeza();
+	Cabeza cabecita = new Cabeza(20);
 	cabecita.setPosX(1);
 	cabecita.setPosY(1);
 	

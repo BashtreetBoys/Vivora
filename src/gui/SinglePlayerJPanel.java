@@ -9,7 +9,6 @@ import javax.swing.*;
 public class SinglePlayerJPanel extends JPanel {
 
 	JButton botonComenzar;
-	ArenaJPanel arenaPanel;
 	
 	public SinglePlayerJPanel() {
 		setBackground(Color.BLACK);
@@ -33,6 +32,6 @@ public class SinglePlayerJPanel extends JPanel {
 	}
 	
 	private void comenzarJuego() {
-		System.out.println("Falta implementar el comienzo del juego singleplayer");
+		new ArenaVentana().setVisible(true);
 	}
 }

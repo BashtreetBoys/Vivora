@@ -1,5 +1,6 @@
 package gameObject;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Vibora {
@@ -13,8 +14,8 @@ public class Vibora {
 	private boolean viva;
 
 	public Vibora(int xIni, int yIni) {
-		this.velocidad = 2;
-		this.cabeza = new Cabeza();
+		this.velocidad = 1;
+		this.cabeza = new Cabeza(this.velocidad);
 		this.cuerpito = new ArrayList<Cuerpo>();
 		// this.posiciones = new ArrayList<>();
 		this.ratioCrecimiento = 1;
@@ -29,44 +30,56 @@ public class Vibora {
 		// this.posiciones.add(cabeza.getPosY());
 		if (this.direccion == 1) {
 
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - 1));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 20));
 			// this.posiciones.add(cabeza.getPosX());
 			// this.posiciones.add(cabeza.getPosY()-1);
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - 2));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 2*20));
 			// this.posiciones.add(cabeza.getPosX());
 			// this.posiciones.add(cabeza.getPosY()-2);
 		} else if (this.direccion == 2) {
 
-			cuerpito.add(new Cuerpo(cabeza.getPosX() - 1, cabeza.getPosY()));
+			cuerpito.add(new Cuerpo(cabeza.getPosX() - 20, cabeza.getPosY()));
 			// this.posiciones.add(cabeza.getPosX()-1);
 			// this.posiciones.add(cabeza.getPosY());
-			cuerpito.add(new Cuerpo(cabeza.getPosX() - 2, cabeza.getPosY()));
+			cuerpito.add(new Cuerpo(cabeza.getPosX() - 2*20, cabeza.getPosY()));
 			// this.posiciones.add(cabeza.getPosX()-2);
 			// this.posiciones.add(cabeza.getPosY());
-
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 3*20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 4*20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 5*20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 6*20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 7*20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 8*20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 9*20));
 		} else if (this.direccion == 3) {
 
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 1));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - 20));
 			// this.posiciones.add(cabeza.getPosX());
 			// this.posiciones.add(cabeza.getPosY() + 1);
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 2));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - 2*20));
 			// this.posiciones.add(cabeza.getPosX());
 			// this.posiciones.add(cabeza.getPosY() + 2);
 		} else if (this.direccion == 4) {
 
-			cuerpito.add(new Cuerpo(cabeza.getPosX() + 1, cabeza.getPosY()));
+			cuerpito.add(new Cuerpo(cabeza.getPosX() + 20, cabeza.getPosY()));
 			// this.posiciones.add(cabeza.getPosX() +1);
 			// this.posiciones.add(cabeza.getPosY());
-			cuerpito.add(new Cuerpo(cabeza.getPosX() + 2, cabeza.getPosY()));
+			cuerpito.add(new Cuerpo(cabeza.getPosX() + 2*20, cabeza.getPosY()));
 			// this.posiciones.add(cabeza.getPosX() + 2);
 			// this.posiciones.add(cabeza.getPosY());
 		}
-
 	}
 
-	public void moverVibora(int direccion) {
+	public void moverVibora(int keyCode) {
 
-		this.direccion = direccion;
+		if(keyCode == KeyEvent.VK_UP && direccion != 3)
+			this.direccion = 1;
+		if(keyCode == KeyEvent.VK_RIGHT && direccion != 4)
+			this.direccion = 2;
+		if(keyCode == KeyEvent.VK_DOWN && direccion != 1)
+			this.direccion = 3;
+		if(keyCode == KeyEvent.VK_LEFT && direccion != 2)
+			this.direccion = 4;
 
 		int xCuerpo = cuerpito.get(0).getPosX();
 		int yCuerpo = cuerpito.get(0).getPosY();
@@ -83,7 +96,6 @@ public class Vibora {
 			cuerpito.get(i).movCuerpo(c1.getPosX(), c1.getPosY());
 
 			i++;
-
 		}
 
 	}
@@ -91,28 +103,34 @@ public class Vibora {
 	public void crecer() {
 		for (int i = 0; i < this.ratioCrecimiento; i++) {
 
-			Cuerpo anteultimo = this.cuerpito.get(this.cuerpito.size() - 2);
-			Cuerpo ultimo = this.cuerpito.get(this.cuerpito.size() - 1);
+			Cuerpo anteultimo = this.cuerpito.get(this.cuerpito.size() - 2*20); //Acomodar respecto a la velocidad
+			Cuerpo ultimo = this.cuerpito.get(this.cuerpito.size() - 20);
 
-			if (((this.cuerpito.get(this.cuerpito.size() - 2).getPosY() == this.cuerpito.get(this.cuerpito.size() - 1)
+			if (((this.cuerpito.get(this.cuerpito.size() - 2*20).getPosY() == this.cuerpito.get(this.cuerpito.size() - 20)
 					.getPosY()))
-					&& this.cuerpito.get(this.cuerpito.size() - 2).getPosX() > this.cuerpito
-							.get(this.cuerpito.size() - 1).getPosX()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX() - 1, ultimo.getPosY()));
+					&& this.cuerpito.get(this.cuerpito.size() - 2*20).getPosX() > this.cuerpito
+							.get(this.cuerpito.size() - 20).getPosX()) {
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX() - 20, ultimo.getPosY()));
 			}
 
 			else if ((anteultimo.getPosY() == ultimo.getPosY()) && anteultimo.getPosX() < ultimo.getPosX()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX() + 1, ultimo.getPosY()));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX() + 20, ultimo.getPosY()));
 			}
 
 			else if ((anteultimo.getPosX() == ultimo.getPosX()) && anteultimo.getPosY() < ultimo.getPosY()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() + 1));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() + 20));
 			}
 
 			else if ((anteultimo.getPosX() == ultimo.getPosX()) && anteultimo.getPosY() > ultimo.getPosY()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() - 1));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() - 20));
 			}
 		}
+	}
+	
+	
+
+	public int getDireccion() {
+		return direccion;
 	}
 
 	public void removerCuerpo() {
