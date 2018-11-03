@@ -13,15 +13,26 @@ public class ArenaVentana extends JFrame {
 	
 	private ArenaJPanel panelArena;
 	private Arena arena;
+	private JPanel panelContenedor;
 	
 	public ArenaVentana() {
 		super("Arena");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		Dimension tamPantalla = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(0, 0, tamPantalla.width, tamPantalla.height); 
+		setExtendedState(this.MAXIMIZED_BOTH); 
 		
 		crearComponentes();
+		
+		//En caso de no querer limitar el tamaño de la arena usar el siguiente 
+		//codigo comentado y comentar todos los add que siguen 
+		/*
 		setContentPane(panelArena);
+		 */
+		
+		setContentPane(panelContenedor);
+		
+		panelContenedor.add(Box.createRigidArea(new Dimension(100, 0)));
+		panelContenedor.add(panelArena);
+		panelContenedor.add(Box.createRigidArea(new Dimension(100, 0)));
 		
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -36,7 +47,12 @@ public class ArenaVentana extends JFrame {
 		panelArena = new ArenaJPanel(arena);
 		panelArena.setBackground(Color.BLACK);
 		panelArena.setBorder(new EmptyBorder(5, 5, 5, 5));
-		panelArena.setBounds(0, 0, arena.getTamaño(), arena.getTamaño());
 		panelArena.setLayout(new BorderLayout(0, 0));
+		panelArena.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		panelContenedor = new JPanel();
+		panelContenedor.setLayout(new BoxLayout(panelContenedor, BoxLayout.X_AXIS));
+		panelContenedor.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panelContenedor.setBackground(new Color(27, 27, 28));
 	}
 }

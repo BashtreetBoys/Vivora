@@ -30,41 +30,41 @@ public class Vibora {
 		// this.posiciones.add(cabeza.getPosY());
 		if (this.direccion == 1) {
 
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + Arena.TAM_GRAFICOS));
 			// this.posiciones.add(cabeza.getPosX());
 			// this.posiciones.add(cabeza.getPosY()-1);
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 2*20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 2*Arena.TAM_GRAFICOS));
 			// this.posiciones.add(cabeza.getPosX());
 			// this.posiciones.add(cabeza.getPosY()-2);
 		} else if (this.direccion == 2) {
 
-			cuerpito.add(new Cuerpo(cabeza.getPosX() - 20, cabeza.getPosY()));
+			cuerpito.add(new Cuerpo(cabeza.getPosX() - Arena.TAM_GRAFICOS, cabeza.getPosY()));
 			// this.posiciones.add(cabeza.getPosX()-1);
 			// this.posiciones.add(cabeza.getPosY());
-			cuerpito.add(new Cuerpo(cabeza.getPosX() - 2*20, cabeza.getPosY()));
+			cuerpito.add(new Cuerpo(cabeza.getPosX() - 2*Arena.TAM_GRAFICOS, cabeza.getPosY()));
 			// this.posiciones.add(cabeza.getPosX()-2);
 			// this.posiciones.add(cabeza.getPosY());
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 3*20));
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 4*20));
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 5*20));
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 6*20));
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 7*20));
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 8*20));
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 9*20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 3*Arena.TAM_GRAFICOS));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 4*Arena.TAM_GRAFICOS));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 5*Arena.TAM_GRAFICOS));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 6*Arena.TAM_GRAFICOS));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 7*Arena.TAM_GRAFICOS));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 8*Arena.TAM_GRAFICOS));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 9*Arena.TAM_GRAFICOS));
 		} else if (this.direccion == 3) {
 
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - 20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - Arena.TAM_GRAFICOS));
 			// this.posiciones.add(cabeza.getPosX());
 			// this.posiciones.add(cabeza.getPosY() + 1);
-			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - 2*20));
+			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - 2*Arena.TAM_GRAFICOS));
 			// this.posiciones.add(cabeza.getPosX());
 			// this.posiciones.add(cabeza.getPosY() + 2);
 		} else if (this.direccion == 4) {
 
-			cuerpito.add(new Cuerpo(cabeza.getPosX() + 20, cabeza.getPosY()));
+			cuerpito.add(new Cuerpo(cabeza.getPosX() + Arena.TAM_GRAFICOS, cabeza.getPosY()));
 			// this.posiciones.add(cabeza.getPosX() +1);
 			// this.posiciones.add(cabeza.getPosY());
-			cuerpito.add(new Cuerpo(cabeza.getPosX() + 2*20, cabeza.getPosY()));
+			cuerpito.add(new Cuerpo(cabeza.getPosX() + 2*Arena.TAM_GRAFICOS, cabeza.getPosY()));
 			// this.posiciones.add(cabeza.getPosX() + 2);
 			// this.posiciones.add(cabeza.getPosY());
 		}
@@ -103,26 +103,26 @@ public class Vibora {
 	public void crecer() {
 		for (int i = 0; i < this.ratioCrecimiento; i++) {
 
-			Cuerpo anteultimo = this.cuerpito.get(this.cuerpito.size() - 2*20); //Acomodar respecto a la velocidad
-			Cuerpo ultimo = this.cuerpito.get(this.cuerpito.size() - 20);
+			Cuerpo anteultimo = this.cuerpito.get(this.cuerpito.size() - 2*Arena.TAM_GRAFICOS); //Acomodar respecto a la velocidad
+			Cuerpo ultimo = this.cuerpito.get(this.cuerpito.size() - Arena.TAM_GRAFICOS);
 
-			if (((this.cuerpito.get(this.cuerpito.size() - 2*20).getPosY() == this.cuerpito.get(this.cuerpito.size() - 20)
+			if (((this.cuerpito.get(this.cuerpito.size() - 2*Arena.TAM_GRAFICOS).getPosY() == this.cuerpito.get(this.cuerpito.size() - Arena.TAM_GRAFICOS)
 					.getPosY()))
-					&& this.cuerpito.get(this.cuerpito.size() - 2*20).getPosX() > this.cuerpito
-							.get(this.cuerpito.size() - 20).getPosX()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX() - 20, ultimo.getPosY()));
+					&& this.cuerpito.get(this.cuerpito.size() - 2*Arena.TAM_GRAFICOS).getPosX() > this.cuerpito
+							.get(this.cuerpito.size() - Arena.TAM_GRAFICOS).getPosX()) {
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX() - Arena.TAM_GRAFICOS, ultimo.getPosY()));
 			}
 
 			else if ((anteultimo.getPosY() == ultimo.getPosY()) && anteultimo.getPosX() < ultimo.getPosX()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX() + 20, ultimo.getPosY()));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX() + Arena.TAM_GRAFICOS, ultimo.getPosY()));
 			}
 
 			else if ((anteultimo.getPosX() == ultimo.getPosX()) && anteultimo.getPosY() < ultimo.getPosY()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() + 20));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() + Arena.TAM_GRAFICOS));
 			}
 
 			else if ((anteultimo.getPosX() == ultimo.getPosX()) && anteultimo.getPosY() > ultimo.getPosY()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() - 20));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() - Arena.TAM_GRAFICOS));
 			}
 		}
 	}

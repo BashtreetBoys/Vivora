@@ -13,13 +13,13 @@ public class Cabeza {
 	public void movCabeza(int dir) {
 		
 		if(dir == 1)
-			this.posY -= 20*velocidad;
+			this.posY -= Arena.TAM_GRAFICOS*velocidad;
 		else if(dir == 2)
-			this.posX += 20*velocidad;
+			this.posX += Arena.TAM_GRAFICOS*velocidad;
 		else if(dir == 3)
-			this.posY += 20*velocidad;
+			this.posY += Arena.TAM_GRAFICOS*velocidad;
 		else if(dir == 4)
-			this.posX -= 20*velocidad;
+			this.posX -= Arena.TAM_GRAFICOS*velocidad;
 	}
 
 	public int getPosX() {

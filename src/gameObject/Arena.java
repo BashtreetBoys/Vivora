@@ -1,9 +1,14 @@
 package gameObject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Arena {
-	private int tamaño = 100;
+	// Esta variable define el tamaño de cada cuadrado que dibujamos en la arena
+	// Puede cambiar a futuro, depende de nuestro gusto
+	public static final int TAM_GRAFICOS = 20;
+	
+	private int tamaño;
 	private ArrayList<Vibora> viboras;
 	private ArrayList<Obstaculo> obstaculos;
 	private Fruta frutaActual;
@@ -12,23 +17,36 @@ public class Arena {
 
 	public Arena() {
 		super();
-		this.tamaño = 100;
+		this.tamaño = 1000;
 		this.viboras = new ArrayList<Vibora>();
 		this.obstaculos = new ArrayList<Obstaculo>();
 		this.lv = 1;
-		this.frutaActual = new Fruta();
+		this.frutaActual = new Fruta("Normal", 0, 0, 1);
 	}
 	
 	public void agregarFruta(Fruta frutaNueva) {
 
-		/* Randomm */
-		int x = (int) (Math.random() * tamaño) + 1;
-		int y = (int) (Math.random() * tamaño) + 1;
+		
+//		x = (int) (Math.random() * tamaño) + 1; // Esto esta mal pensado, no concuerda con lo que hacemos
+//		y = (int) (Math.random() * tamaño) + 1;	// Nosotros estamos trabajando en una grilla con celdas de tamaño
+												// Arena.TAM_GRAFICOS
+		/* Random */
+		int fil = (int) Math.floor(tamaño / Arena.TAM_GRAFICOS);
+		int col = (int) Math.floor(tamaño / Arena.TAM_GRAFICOS);
+		
+		int x = new Random().nextInt(fil) * Arena.TAM_GRAFICOS; // Nos da una fila random entre las que tenemos
+		int y = new Random().nextInt(col) * Arena.TAM_GRAFICOS; // Nos da una columna random entre las que tenemos
 
+		/*
+		 * En estos momentos como no puedo setear el tamaño de la arena como quiero a veces la fruta sale 
+		 * de la arena, preguntar como solucionar ese asunto del redimensionado del ArenaJPanel y asi poder
+		 * trabajar con la cantidad correcta de filas y columnas
+		 *
+		 */
+		
 		while (verColision(x, y) != null) {
-
-			x = (int) (Math.random() * tamaño) + 1;
-			y = (int) (Math.random() * tamaño) + 1;
+			x = new Random().nextInt(fil) * Arena.TAM_GRAFICOS;
+			y = new Random().nextInt(col) * Arena.TAM_GRAFICOS;
 		}
 		frutaNueva.setPosX(x);
 		frutaNueva.setPosY(y);
@@ -115,7 +133,7 @@ public class Arena {
 
 		switch (n) {
 		case 0:
-			v.setVibora(5, 95, 2);
+			v.setVibora(0, 0, 2);
 			break;
 		case 1:
 			v.setVibora(50, 95, 3);
@@ -160,8 +178,8 @@ public class Arena {
 		switch (lv) {
 		case 1:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1, 1, 100, 1));
-			obstaculos.add(new Obstaculo(100, 2, 100, 100));
+			obstaculos.add(new Obstaculo(0, 0, 100, 20));
+			obstaculos.add(new Obstaculo(101, 0, 120, 100));
 			obstaculos.add(new Obstaculo(99, 100, 1, 100));
 			obstaculos.add(new Obstaculo(1, 99, 1, 2));
 			break;

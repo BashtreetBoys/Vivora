@@ -30,7 +30,8 @@ public class Ventana extends JFrame {
 			e.printStackTrace();
 		}
 		
-		setBounds(100, 100, 800, 500);
+		//setBounds(100, 100, 800, 500);
+		setExtendedState(this.MAXIMIZED_BOTH);
 		
 		crearLayout();
 		crearComponentes();
@@ -50,11 +51,11 @@ public class Ventana extends JFrame {
 	private void crearLayout() {
 		cl = new CardLayout();
 		panelPrincipal = new JPanel();
-		panelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panelPrincipal.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panelPrincipal.setLayout(cl);
 		
 		panelMenu = new JPanel();
-		panelMenu.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panelMenu.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panelMenu.setBackground(new Color(51));
 		panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
 		

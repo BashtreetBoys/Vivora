@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class SinglePlayerJPanel extends JPanel {
 
@@ -12,6 +13,7 @@ public class SinglePlayerJPanel extends JPanel {
 	
 	public SinglePlayerJPanel() {
 		setBackground(Color.BLACK);
+		setBorder(new EmptyBorder(0, 0, 0, 0));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		crearComponentes();
