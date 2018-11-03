@@ -30,9 +30,9 @@ public class ArenaVentana extends JFrame {
 		
 		setContentPane(panelContenedor);
 		
-		panelContenedor.add(Box.createRigidArea(new Dimension(100, 0)));
+		panelContenedor.add(Box.createRigidArea(new Dimension(240, 0)));
 		panelContenedor.add(panelArena);
-		panelContenedor.add(Box.createRigidArea(new Dimension(100, 0)));
+		panelContenedor.add(Box.createRigidArea(new Dimension(240, 0)));
 		
 		addKeyListener(new KeyAdapter() {
 			@Override

@@ -17,7 +17,7 @@ public class Arena {
 
 	public Arena() {
 		super();
-		this.tamaño = 1000;
+		this.tamaño = 100;
 		this.viboras = new ArrayList<Vibora>();
 		this.obstaculos = new ArrayList<Obstaculo>();
 		this.lv = 1;
@@ -30,9 +30,9 @@ public class Arena {
 //		x = (int) (Math.random() * tamaño) + 1; // Esto esta mal pensado, no concuerda con lo que hacemos
 //		y = (int) (Math.random() * tamaño) + 1;	// Nosotros estamos trabajando en una grilla con celdas de tamaño
 												// Arena.TAM_GRAFICOS
-		/* Random */
-		int fil = (int) Math.floor(tamaño / Arena.TAM_GRAFICOS);
-		int col = (int) Math.floor(tamaño / Arena.TAM_GRAFICOS);
+		/* Random */		
+		int fil = (int) Math.round(700 / Arena.TAM_GRAFICOS);
+		int col = (int) Math.round(700 / Arena.TAM_GRAFICOS);
 		
 		int x = new Random().nextInt(fil) * Arena.TAM_GRAFICOS; // Nos da una fila random entre las que tenemos
 		int y = new Random().nextInt(col) * Arena.TAM_GRAFICOS; // Nos da una columna random entre las que tenemos
@@ -56,7 +56,7 @@ public class Arena {
 
 		/* Verifica si hay una fruta en la posición */
 		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta // fruta
-			return frutaActual.getClass();
+			return frutaActual;
 
 		/* Verifica si hay un obstáculo en la posición */
 		for (int i = 0; i < obstaculos.size(); i++) {
@@ -65,30 +65,30 @@ public class Arena {
 			int posXfin = obstaculos.get(i).getPosXfin();
 			int posYfin = obstaculos.get(i).getPosYfin();
 
-			if (posXini == posXfin) {
+			if (posXini == posYini) {
 				if (posXini == x) {
 					if (y >= posYini && y <= posYfin)
-						return obstaculos.get(i).getClass();
+						return obstaculos.get(i);
 				}
 			}
 
-			if (posYini == posYfin) {
+			if (posXfin == posYfin) {
 				if (posYini == y) {
 					if (x >= posXini && x <= posXfin)
-						return obstaculos.get(i).getClass();
+						return obstaculos.get(i);
 				}
 			}
 
 		}
 
-		for (int i = 0; i < viboras.size(); i++) {
-			if (viboras.get(i).getCabeza().getPosX() == x && viboras.get(i).getCabeza().getPosY() == y)
-				return viboras.get(i).getClass();
-			for (int j = 0; j < viboras.get(i).getCuerpito().size(); j++)
-				if (viboras.get(i).getCuerpito().get(i).getPosX() == x
-						&& viboras.get(i).getCuerpito().get(i).getPosY() == y)
-					return viboras.get(i).getClass();
-		}
+//		for (int i = 0; i < viboras.size(); i++) {
+//			if (viboras.get(i).getCabeza().getPosX() == x && viboras.get(i).getCabeza().getPosY() == y)
+//				return viboras.get(i);
+//			for (int j = 0; j < viboras.get(i).getCuerpito().size(); j++)
+//				if (viboras.get(i).getCuerpito().get(i).getPosX() == x
+//						&& viboras.get(i).getCuerpito().get(i).getPosY() == y)
+//					return viboras.get(i);
+//		}
 		return null;
 	}
 
@@ -133,7 +133,7 @@ public class Arena {
 
 		switch (n) {
 		case 0:
-			v.setVibora(0, 0, 2);
+			v.setVibora(80, 80, 2);
 			break;
 		case 1:
 			v.setVibora(50, 95, 3);
@@ -178,10 +178,10 @@ public class Arena {
 		switch (lv) {
 		case 1:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(0, 0, 100, 20));
-			obstaculos.add(new Obstaculo(101, 0, 120, 100));
-			obstaculos.add(new Obstaculo(99, 100, 1, 100));
-			obstaculos.add(new Obstaculo(1, 99, 1, 2));
+			obstaculos.add(new Obstaculo(0, 0, 20, 700));
+			obstaculos.add(new Obstaculo(20, 0, 1200, 20));
+			obstaculos.add(new Obstaculo(1140, 20, 1160, 700));
+			obstaculos.add(new Obstaculo(20, 680, 1200, 700));
 			break;
 		case 2:
 			obstaculos.clear();
