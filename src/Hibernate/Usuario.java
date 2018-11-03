@@ -1,10 +1,16 @@
-package gameObject;
+package Hibernate;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 	
 	private String username;
 	private String contraseña;
 	
+	public Usuario(String username, String contraseña) {
+		this.username = username;
+		this.contraseña = contraseña;
+	}
 	public String getUsername() {
 		return username;
 	}
