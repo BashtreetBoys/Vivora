@@ -4,13 +4,12 @@ import org.junit.*;
 public class HibernateAppTest {
 
 	@Test
-	public void testAgregar() {
+	public void testAgregar() throws Exception {
 		HibernateApp ha = new HibernateApp();
 		
-		Usuario user = new Usuario("ElPipa","taloko");
-		Usuario user2 = new Usuario("ElWancho","PalermoHijo");
-		
-		Assert.assertEquals(true,ha.registrarUsuario(user));
+		ContactoDao user = new ContactoDao("ElPipa","taloko");
+		ContactoDao user2 = new ContactoDao("ElWancho","PalermoHijo");
+		Assert.assertEquals(true,ha.consultarUsuario(user));
 		
 	}
 

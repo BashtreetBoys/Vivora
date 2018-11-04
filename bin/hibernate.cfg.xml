@@ -11,7 +11,7 @@
 			</property>
 			
 		<property name = "hibernate.connection.url">
-			jdbc:sqlite:./src/SQLite/test.sqlite
+			jdbc:sqlite:src/SQLite/test.sqlite
 		</property>
 
 		<property name = "hibernate.dialect">
@@ -24,6 +24,10 @@
 		
 		<property name = "format_sql">
 			true
+		</property>
+		
+		<property name="connection.pool_size">
+			1
 		</property>
 
 		<mapping resource = "./src/gameObject/mapping/Usuario.hbm.xml"/>

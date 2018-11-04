@@ -2,12 +2,16 @@ package Hibernate;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable {
+public class ContactoDao implements Serializable {
 	
 	private String username;
 	private String contraseña;
 	
-	public Usuario(String username, String contraseña) {
+	public ContactoDao() {
+		
+	}
+	
+	public ContactoDao(String username, String contraseña) {
 		this.username = username;
 		this.contraseña = contraseña;
 	}
