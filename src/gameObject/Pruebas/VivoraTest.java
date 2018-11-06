@@ -10,22 +10,23 @@ import java.util.ArrayList;
 import org.junit.Assert;
 
 public class VivoraTest {
+	public static final int TAM_GRAFICOS = 20;
 	@Test
 	public void crearViboras(){
-		Vibora vib = new Vibora(1,1);
+		Vibora vib = new Vibora(2,2);
 		
 		Cabeza cabecita = new Cabeza(20);
-		cabecita.setPosX(1);
-		cabecita.setPosY(1);
+		cabecita.setPosX(2);
+		cabecita.setPosY(2);
 		
 		ArrayList<Cuerpo> cuerpito = new ArrayList<Cuerpo>();
-		cuerpito.add(new Cuerpo(cabecita.getPosX(),cabecita.getPosY()-1));
-		cuerpito.add(new Cuerpo(cabecita.getPosX(),cabecita.getPosY()-2));
+		cuerpito.add(new Cuerpo(cabecita.getPosX(),cabecita.getPosY()+TAM_GRAFICOS));
+		cuerpito.add(new Cuerpo(cabecita.getPosX(),cabecita.getPosY()+(2*TAM_GRAFICOS)));
 		
-		vib.setVibora(1, 1, 1);
+		vib.setVibora(2, 2, 1);
 		//Ver si puso bien la velocidad inicial de la vibora
 		Assert.assertEquals(2, vib.getVelocidad());
-		
+				
 		//Ver si creo a la vibora viva
 		Assert.assertEquals(true, vib.isViva());
 		

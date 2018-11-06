@@ -14,7 +14,7 @@ public class Vibora {
 	private boolean viva;
 
 	public Vibora(int xIni, int yIni) {
-		this.velocidad = 1;
+		this.velocidad = 2;
 		this.cabeza = new Cabeza(this.velocidad);
 		this.cuerpito = new ArrayList<Cuerpo>();
 		// this.posiciones = new ArrayList<>();
