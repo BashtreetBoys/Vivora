@@ -65,7 +65,7 @@ public class Arena {
 			int posXfin = obstaculos.get(i).getPosXfin();
 			int posYfin = obstaculos.get(i).getPosYfin();
 
-			if (posXini == posYini) {
+			/*if (posXini == posYini) {
 				if (posXini == x) {
 					if (y >= posYini && y <= posYfin)
 						return obstaculos.get(i);
@@ -77,6 +77,10 @@ public class Arena {
 					if (x >= posXini && x <= posXfin)
 						return obstaculos.get(i);
 				}
+			}*/
+			//Veo si el punto pasado por parametro esta entre los valores X e Y del obstaculo
+			if( (x >= posXini && x <= posXfin) && ( y >= posYini && y <= posYfin ) ) {
+				return obstaculos.get(i).getClass();
 			}
 
 		}
