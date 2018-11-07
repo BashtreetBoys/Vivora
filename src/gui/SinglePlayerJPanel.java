@@ -19,6 +19,7 @@ public class SinglePlayerJPanel extends JPanel {
 		crearComponentes();
 		add(Box.createRigidArea(new Dimension(0, 100)));
 		add(botonComenzar);
+	    add(Box.createRigidArea(new Dimension(0, 20)));
 	}
 	
 	private void crearComponentes() {

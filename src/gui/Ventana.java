@@ -18,6 +18,7 @@ public class Ventana extends JFrame {
 	private MultiPlayerJPanel multiPlayerPanel;
 	private JLabel tituloJuego;
 	private CardLayout cl; 
+	private JButton atras;
 
 	public Ventana() {
 		super("Vivora chota");
@@ -32,9 +33,9 @@ public class Ventana extends JFrame {
 		
 		//setBounds(100, 100, 800, 500);
 		setExtendedState(this.MAXIMIZED_BOTH);
-		
-		crearLayout();
+				
 		crearComponentes();
+		crearLayout();
 		
 		setContentPane(panelPrincipal);
 		
@@ -60,6 +61,7 @@ public class Ventana extends JFrame {
 		panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
 		
 		singlePlayerPanel = new SinglePlayerJPanel();	//Ahora mismo no tiene nada
+		singlePlayerPanel.add(atras);
 		multiPlayerPanel = new MultiPlayerJPanel();	//Ahora mismo no tiene nada
 		
 		panelPrincipal.add(panelMenu, "Menu");
@@ -82,6 +84,11 @@ public class Ventana extends JFrame {
 		multiPlayer.setAlignmentX(Component.CENTER_ALIGNMENT);
 		multiPlayer.setMaximumSize(maxSize);
 		multiPlayer.addActionListener(new BotonActionListener());
+		
+		atras = new JButton("Atras");
+		atras.setAlignmentX(Component.CENTER_ALIGNMENT);
+		atras.setMaximumSize(maxSize);
+		atras.addActionListener(new BotonActionListener());
 	}
 	
 	private void lanzarSinglePlayer() {
@@ -102,8 +109,12 @@ public class Ventana extends JFrame {
 				
 				if(boton == singlePlayer)
 					Ventana.this.lanzarSinglePlayer();
-				else
+				else if(boton == multiPlayer)
 					Ventana.this.lanzarMultiPlayer();
+				else {
+					cl.first(panelPrincipal);					
+				}
+					
 			}
 		}
 	}

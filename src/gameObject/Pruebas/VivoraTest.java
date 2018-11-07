@@ -25,7 +25,7 @@ public class VivoraTest {
 		
 		vib.setVibora(2, 2, 1);
 		//Ver si puso bien la velocidad inicial de la vibora
-		Assert.assertEquals(2, vib.getVelocidad());
+		Assert.assertEquals(1, vib.getVelocidad());
 				
 		//Ver si creo a la vibora viva
 		Assert.assertEquals(true, vib.isViva());

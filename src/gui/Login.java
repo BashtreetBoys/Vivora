@@ -16,16 +16,18 @@ import javax.swing.JTextField;
 
 public class Login {
 
+	
+	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Demo application");
 		frame.setSize(300, 150);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(frame);
 		
-
 		JPanel panel = new JPanel();
 		frame.add(panel);
 		placeComponents(panel);
+		
 
 		frame.setVisible(true);
 	}
@@ -58,6 +60,8 @@ public class Login {
 		registerButton.setBounds(180, 80, 80, 25);
 		panel.add(registerButton);
 		
+		Ventana ventana = new Ventana();
+		
 		ActionListener listenerLoguearse = new ActionListener() {
 			
 			@Override
@@ -65,9 +69,11 @@ public class Login {
 				JButton source = (JButton) e.getSource();				
 				if(userText.getText().equals("Cami")) {
 					JOptionPane.showMessageDialog(source, "Hola me quiero loguear!");
+					
 				}
 				else {
 					JOptionPane.showMessageDialog(source, "No te conozco");
+					ventana.setVisible(true);
 				}
 				
 			}
