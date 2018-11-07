@@ -212,7 +212,7 @@ public class Arena {
 			obstaculos.clear();
 			obstaculos.add(new Obstaculo(0, 0, 20, 700));
 			obstaculos.add(new Obstaculo(20, 0, 1200, 20));
-			obstaculos.add(new Obstaculo(1140, 20, 1160, 700));
+			obstaculos.add(new Obstaculo(860, 20, 880, 700));
 			obstaculos.add(new Obstaculo(20, 680, 1200, 700));
 			break;
 		case 2:
