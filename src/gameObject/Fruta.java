@@ -11,12 +11,12 @@ public class Fruta {
 		this.powerUp = powerUp;
 		this.posX = posX;
 		this.posY = posY;
-		this.numeroFruta=numeroFruta;
+		this.numeroFruta = numeroFruta;
 	}
 	
-	public Fruta() {}
+	public Fruta() {}	//No borrar este metodo, se utiliza
+						//para crear un fruta vacia en Arena
 
-	
 	public String getPowerUp() {
 		return powerUp;
 	}
