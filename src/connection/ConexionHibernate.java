@@ -54,7 +54,7 @@ public class ConexionHibernate {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
+	
 	/**
 	 * 
 	 * @param usuario: le pasan el username que inserto en el login
