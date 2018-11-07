@@ -56,7 +56,7 @@ public class Arena {
 
 		/* Verifica si hay una fruta en la posición */
 		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta // fruta
-			return frutaActual;
+			return frutaActual.getClass().getSimpleName();
 
 		/* Verifica si hay un obstáculo en la posición */
 		for (int i = 0; i < obstaculos.size(); i++) {
@@ -80,11 +80,35 @@ public class Arena {
 			}*/
 			//Veo si el punto pasado por parametro esta entre los valores X e Y del obstaculo
 			if( (x >= posXini && x <= posXfin) && ( y >= posYini && y <= posYfin ) ) {
-				return obstaculos.get(i).getClass();
+				return obstaculos.get(i).getClass().getSimpleName();
 			}
 
 		}
-
+		//Veo si la cabeza de alguna vibora choca con la cabeza de otra vibora
+		for(int i=0;i<this.viboras.size();i++) {
+			for(int j=i+1;j<this.viboras.size();j++) {
+				//Veo si la cabeza de la vibora en la que estoy mirando choca con la cabeza de alguna otra vibora
+				if( ( this.viboras.get(i).getCabeza().getPosX() == this.viboras.get(j).getCabeza().getPosX() ) && ( this.viboras.get(i).getCabeza().getPosY() == this.viboras.get(j).getCabeza().getPosY() ) ) {
+					return this.viboras.get(j).getClass().getSimpleName();
+				}
+			}
+		}
+		
+		//Veo si la cabeza de alguna vibora choca con algun cuerpito de otra vibora
+		/* Prototipo, hay que corregirlo
+		for(int i=0;i<this.viboras.size();i++) {
+			for(int j=i+1;j<this.viboras.size();j++) {
+				for(int k=0;k<=this.viboras.get(j).getCuerpito().size();k++) {
+					if( ( this.viboras.get(i).getCabeza().getPosX() == this.viboras.get(j).getCuerpito().get(k).getPosX() ) && ( this.viboras.get(i).getCabeza().getPosY() ==  this.viboras.get(j).getCuerpito().get(k).getPosY() ) ) {
+						return this.viboras.get(j).getClass().getSimpleName();
+					}
+				}
+				
+			}
+		}*/
+		
+		
+		
 //		for (int i = 0; i < viboras.size(); i++) {
 //			if (viboras.get(i).getCabeza().getPosX() == x && viboras.get(i).getCabeza().getPosY() == y)
 //				return viboras.get(i);
@@ -130,6 +154,10 @@ public class Arena {
 		return false;
 	}
 
+	public void agregarVibora(Vibora v, int x, int y, int dir)	{
+		v.setVibora(x, y, dir);
+	}
+	
 	public void agregarVibora(Vibora v) {
 		viboras.add(v);
 		int n;
