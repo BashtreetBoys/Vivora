@@ -56,7 +56,7 @@ public class Arena {
 
 		/* Verifica si hay una fruta en la posición */
 		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta // fruta
-			return frutaActual.getClass().getSimpleName();
+			return frutaActual;
 
 		/* Verifica si hay un obstáculo en la posición */
 		for (int i = 0; i < obstaculos.size(); i++) {
@@ -165,7 +165,7 @@ public class Arena {
 
 		switch (n) {
 		case 0:
-			v.setVibora(80, 80, 2);
+			v.setVibora(4, 4, 2);
 			break;
 		case 1:
 			v.setVibora(50, 95, 3);

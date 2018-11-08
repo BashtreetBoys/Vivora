@@ -23,7 +23,7 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 	public ArenaJPanel(Arena a) {
 		setBackground(Color.BLACK);
 		arena = a;
-		// setBounds(100, 0, arena.getTamaño(), arena.getTamaño());
+
 		vibora = new Vibora(0, 0);
 		arena.agregarVibora(this.vibora);
 		arena.cambiarNivel();
@@ -79,6 +79,11 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(!vibora.isViva()) {
+			t.stop();
+			System.out.println("Se te murio la vibora");
+		}
+			
 		vibora.moverVibora(keyCodeRegistrado);
 		
 		Object obj = arena.verColision(vibora.getCabeza().getPosX(), vibora.getCabeza().getPosY());
@@ -92,10 +97,8 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 	}
 
 	public void moverVibora(int keyCode) {
-		if (keyCode != aKeyCode(vibora.getDireccion()) && keyCode != aKeyCodeOpuesto(vibora.getDireccion())) {
+		if (keyCode != aKeyCode(vibora.getDireccion()) && keyCode != aKeyCodeOpuesto(vibora.getDireccion()))
 			this.keyCodeRegistrado = keyCode;
-			vibora.moverVibora(keyCode);
-		}
 	}
 
 	private int aKeyCode(int direccion) {
@@ -121,5 +124,8 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		else
 			return KeyEvent.VK_LEFT;
 	}
-
+	
+	public void setKeyCodeRegistrado(KeyEvent e) {
+		
+	}
 }

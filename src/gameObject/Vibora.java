@@ -15,7 +15,7 @@ public class Vibora {
 
 	public Vibora(int xIni, int yIni) {
 		this.velocidad = 1;
-		this.cabeza = new Cabeza(this.velocidad);
+		this.cabeza = new Cabeza(this.velocidad, xIni, yIni);
 		this.cuerpito = new ArrayList<Cuerpo>();
 		// this.posiciones = new ArrayList<>();
 		this.ratioCrecimiento = 1;
@@ -24,8 +24,8 @@ public class Vibora {
 
 	public void setVibora(int xIni, int yIni, int direccion) {
 		this.direccion = direccion;
-		cabeza.setPosX(xIni);
-		cabeza.setPosY(yIni);
+		cabeza.setPosX(xIni * Arena.TAM_GRAFICOS);
+		cabeza.setPosY(yIni * Arena.TAM_GRAFICOS);
 		// this.posiciones.add(cabeza.getPosX());
 		// this.posiciones.add(cabeza.getPosY());
 		if (this.direccion == 1) {
@@ -81,13 +81,16 @@ public class Vibora {
 			if (keyCode == KeyEvent.VK_LEFT && direccion != 2)
 				this.direccion = 4;
 
+			
+			int xCabeza = cabeza.getPosX();
+			int yCabeza = cabeza.getPosY();
+			this.cabeza.movCabeza(this.direccion);
+			
 			int xCuerpo = cuerpito.get(0).getPosX();
 			int yCuerpo = cuerpito.get(0).getPosY();
-			cuerpito.get(0).movCuerpo(this.cabeza.getPosX(), this.cabeza.getPosY());
-
-			this.cabeza.movCabeza(this.direccion);
+			cuerpito.get(0).movCuerpo(xCabeza, yCabeza);
+			
 			int i = 1;
-
 			while (i < cuerpito.size()) {
 
 				Cuerpo c1 = new Cuerpo(xCuerpo, yCuerpo);
@@ -111,19 +114,19 @@ public class Vibora {
 					.getPosY()))
 					&& this.cuerpito.get(this.cuerpito.size() - 2).getPosX() > this.cuerpito
 							.get(this.cuerpito.size() - 1).getPosX()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX() - 1, ultimo.getPosY()));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX() - Arena.TAM_GRAFICOS, ultimo.getPosY()));
 			}
 
 			else if ((anteultimo.getPosY() == ultimo.getPosY()) && anteultimo.getPosX() < ultimo.getPosX()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX() + 1, ultimo.getPosY()));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX() + Arena.TAM_GRAFICOS, ultimo.getPosY()));
 			}
 
 			else if ((anteultimo.getPosX() == ultimo.getPosX()) && anteultimo.getPosY() < ultimo.getPosY()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() + 1));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() + Arena.TAM_GRAFICOS));
 			}
 
 			else if ((anteultimo.getPosX() == ultimo.getPosX()) && anteultimo.getPosY() > ultimo.getPosY()) {
-				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() - 1));
+				this.cuerpito.add(new Cuerpo(ultimo.getPosX(), ultimo.getPosY() - Arena.TAM_GRAFICOS));
 			}
 		}
 	}

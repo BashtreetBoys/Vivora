@@ -21,7 +21,7 @@ public class Ventana extends JFrame {
 	private JButton atras;
 
 	public Ventana() {
-		super("Vivora chota");
+		super("Vivora");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		try {
@@ -32,7 +32,7 @@ public class Ventana extends JFrame {
 		}
 		
 		//setBounds(100, 100, 800, 500);
-		setExtendedState(this.MAXIMIZED_BOTH);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 				
 		crearComponentes();
 		crearLayout();

@@ -6,8 +6,10 @@ public class Cabeza {
 	private int posY;
 	private float velocidad;
 	
-	public Cabeza(float velocidad) {
+	public Cabeza(float velocidad, int xIni, int yIni) {
 		this.velocidad = velocidad;
+		this.posX = xIni * Arena.TAM_GRAFICOS;
+		this.posY = yIni * Arena.TAM_GRAFICOS;
 	}
 
 	public void movCabeza(int dir) {
