@@ -31,8 +31,8 @@ public class Arena {
 //		y = (int) (Math.random() * tamaño) + 1;	// Nosotros estamos trabajando en una grilla con celdas de tamaño
 												// Arena.TAM_GRAFICOS
 		/* Random */		
-		int fil = (int) Math.round(600 / Arena.TAM_GRAFICOS);
-		int col = (int) Math.round(820/ Arena.TAM_GRAFICOS);
+		int fil = (int) Math.round(580 / Arena.TAM_GRAFICOS);
+		int col = (int) Math.round(800/ Arena.TAM_GRAFICOS);
 		
 		int x = new Random().nextInt(col) * Arena.TAM_GRAFICOS; // Nos da una fila random entre las que tenemos
 		int y = new Random().nextInt(fil) * Arena.TAM_GRAFICOS; // Nos da una columna random entre las que tenemos
