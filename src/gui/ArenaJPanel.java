@@ -89,12 +89,9 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
+
 		if (!vibora.isViva()) {
-=======
-		if(!vibora.isViva()) {
-	
->>>>>>> chocarVibora
+
 			t.stop();
 			System.out.println("Se te murio la vibora");
 		}
@@ -102,23 +99,8 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		vibora.moverVibora(keyCodeRegistrado);
 
 		Object obj = arena.verColision(vibora.getCabeza().getPosX(), vibora.getCabeza().getPosY());
-<<<<<<< HEAD
-
-		if (obj == fruta)
-			arena.colisionarFruta(vibora);
-		else if (obj != null)
-			arena.colisionarConViboraOObstaculo(vibora);
-		int cont = 0;
-		if (lv < 3) {
-			if (arena.getCantidadFrutas() > 3) {
-						
-				arena.setLv(++lv);
-				arena.cambiarNivel();
-			}
-		}
-
-=======
 		
+
 		if (obj == fruta) arena.colisionarFruta(vibora);
 		else if (obj != null && obj.getClass() == vibora.getClass() ) {
 			
@@ -131,10 +113,15 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		}
 		else if(obj!=null)
 			arena.colisionarConViboraOObstaculo(vibora);
-
 			
+		if (lv < 3) {
+			if (arena.getCantidadFrutas() > 3) {
+						
+				arena.setLv(++lv);
+				arena.cambiarNivel();
+			}
+		}
 		
->>>>>>> chocarVibora
 		repaint();
 	}
 
