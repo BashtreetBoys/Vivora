@@ -19,6 +19,7 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 	private Fruta fruta;
 	int keyCodeRegistrado;
 	private ArrayList<Obstaculo> obs;
+	int lv = 1;
 
 	public ArenaJPanel(Arena a) {
 		setBackground(Color.BLACK);
@@ -51,7 +52,7 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 	}
 
 	private void pintarObstaculos(Graphics g) {
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLUE);
 //		El problema por el cual no pintaba los obstaculos era porque 
 //		los valores estaban mal definidos (Xini, Yini, Xfin, Yfin)
 //		Arreglar mas tarde para pintarlos
@@ -79,20 +80,28 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(!vibora.isViva()) {
+		if (!vibora.isViva()) {
 			t.stop();
 			System.out.println("Se te murio la vibora");
 		}
-			
+
 		vibora.moverVibora(keyCodeRegistrado);
-		
+
 		Object obj = arena.verColision(vibora.getCabeza().getPosX(), vibora.getCabeza().getPosY());
-		
+
 		if (obj == fruta)
 			arena.colisionarFruta(vibora);
-		else if (obj!=null) 	
+		else if (obj != null)
 			arena.colisionarConViboraOObstaculo(vibora);
-		
+		int cont = 0;
+		if (lv < 3) {
+			if (arena.getCantidadFrutas() > 3) {
+						
+				arena.setLv(++lv);
+				arena.cambiarNivel();
+			}
+		}
+
 		repaint();
 	}
 
@@ -124,8 +133,8 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		else
 			return KeyEvent.VK_LEFT;
 	}
-	
+
 	public void setKeyCodeRegistrado(KeyEvent e) {
-		
+
 	}
 }

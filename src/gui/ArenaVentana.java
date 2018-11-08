@@ -18,7 +18,9 @@ public class ArenaVentana extends JFrame {
 	public ArenaVentana() {
 		super("Arena");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		setBounds(0,0,1100,689);
+		setResizable(false);
+		//setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		
 		crearComponentes();
 		
@@ -28,11 +30,11 @@ public class ArenaVentana extends JFrame {
 		setContentPane(panelArena);
 		 */
 		
-		setContentPane(panelContenedor);
+		setContentPane(panelArena);
 		
-		panelContenedor.add(Box.createRigidArea(new Dimension(240, 0)));
-		panelContenedor.add(panelArena);
-		panelContenedor.add(Box.createRigidArea(new Dimension(240, 0)));
+//		panelContenedor.add(Box.createRigidArea(new Dimension(240, 0)));
+//		panelContenedor.add(panelArena);
+//		panelContenedor.add(Box.createRigidArea(new Dimension(240, 0)));
 		
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -46,7 +48,7 @@ public class ArenaVentana extends JFrame {
 		arena = new Arena();
 		panelArena = new ArenaJPanel(arena);
 		panelArena.setBackground(Color.BLACK);
-		panelArena.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panelArena.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panelArena.setLayout(new BorderLayout(0, 0));
 		panelArena.setAlignmentX(Component.CENTER_ALIGNMENT);
 		

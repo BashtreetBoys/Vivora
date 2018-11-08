@@ -31,12 +31,13 @@ public class Arena {
 //		y = (int) (Math.random() * tamaño) + 1;	// Nosotros estamos trabajando en una grilla con celdas de tamaño
 												// Arena.TAM_GRAFICOS
 		/* Random */		
-		int fil = (int) Math.round(700 / Arena.TAM_GRAFICOS);
-		int col = (int) Math.round(700 / Arena.TAM_GRAFICOS);
+		int fil = (int) Math.round(600 / Arena.TAM_GRAFICOS);
+		int col = (int) Math.round(820/ Arena.TAM_GRAFICOS);
 		
-		int x = new Random().nextInt(fil) * Arena.TAM_GRAFICOS; // Nos da una fila random entre las que tenemos
-		int y = new Random().nextInt(col) * Arena.TAM_GRAFICOS; // Nos da una columna random entre las que tenemos
+		int x = new Random().nextInt(col) * Arena.TAM_GRAFICOS; // Nos da una fila random entre las que tenemos
+		int y = new Random().nextInt(fil) * Arena.TAM_GRAFICOS; // Nos da una columna random entre las que tenemos
 
+		System.out.println(x + ", " + y);
 		/*
 		 * En estos momentos como no puedo setear el tamaño de la arena como quiero a veces la fruta sale 
 		 * de la arena, preguntar como solucionar ese asunto del redimensionado del ArenaJPanel y asi poder
@@ -210,41 +211,43 @@ public class Arena {
 		switch (lv) {
 		case 1:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(0, 0, 20, 700));
-			obstaculos.add(new Obstaculo(20, 0, 1200, 20));
-			obstaculos.add(new Obstaculo(860, 20, 880, 700));
-			obstaculos.add(new Obstaculo(20, 680, 1200, 700));
+			obstaculos.add(new Obstaculo(0, 0, 19, 640));
+			obstaculos.add(new Obstaculo(19, 0, 880, 19));
+			obstaculos.add(new Obstaculo(860, 19, 880, 640));
+			obstaculos.add(new Obstaculo(0, 640, 880, 660));
 			break;
 		case 2:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1, 1, 100, 1));
-			obstaculos.add(new Obstaculo(100, 2, 100, 100));
-			obstaculos.add(new Obstaculo(99, 100, 1, 100));
-			obstaculos.add(new Obstaculo(1, 99, 1, 2));
-			obstaculos.add(new Obstaculo(20, 50, 80, 50));
+			obstaculos.add(new Obstaculo(0, 0, 19, 640));
+			obstaculos.add(new Obstaculo(19, 0, 880, 19));
+			obstaculos.add(new Obstaculo(860, 19, 880, 640));
+			obstaculos.add(new Obstaculo(0, 640, 880, 660));
+			obstaculos.add(new Obstaculo(220, 320, 659, 339));
 			break;
 		case 3:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1, 1, 100, 1));
-			obstaculos.add(new Obstaculo(100, 2, 100, 100));
-			obstaculos.add(new Obstaculo(99, 100, 1, 100));
-			obstaculos.add(new Obstaculo(1, 99, 1, 2));
-			obstaculos.add(new Obstaculo(20, 20, 20, 80));
-			obstaculos.add(new Obstaculo(80, 20, 80, 80));
+			obstaculos.add(new Obstaculo(0, 0, 19, 640));
+			obstaculos.add(new Obstaculo(19, 0, 880, 19));
+			obstaculos.add(new Obstaculo(860, 19, 880, 640));
+			obstaculos.add(new Obstaculo(0, 640, 880, 660));
+			obstaculos.add(new Obstaculo(560, 180, 880, 199));
+			obstaculos.add(new Obstaculo(0, 380, 319, 399));
+			obstaculos.add(new Obstaculo(320, 0, 339, 259));
+			obstaculos.add(new Obstaculo(560, 400, 579, 660));
 			break;
 		case 4:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1, 1, 100, 1));
-			obstaculos.add(new Obstaculo(100, 2, 100, 100));
-			obstaculos.add(new Obstaculo(99, 100, 1, 100));
-			obstaculos.add(new Obstaculo(1, 99, 1, 2));
+			obstaculos.add(new Obstaculo(0, 0, 19, 640));
+			obstaculos.add(new Obstaculo(19, 0, 880, 19));
+			obstaculos.add(new Obstaculo(860, 19, 880, 640));
+			obstaculos.add(new Obstaculo(0, 640, 880, 660));
 			break;
 		case 5:
 			obstaculos.clear();
-			obstaculos.add(new Obstaculo(1, 1, 100, 1));
-			obstaculos.add(new Obstaculo(100, 2, 100, 100));
-			obstaculos.add(new Obstaculo(99, 100, 1, 100));
-			obstaculos.add(new Obstaculo(1, 99, 1, 2));
+			obstaculos.add(new Obstaculo(0, 0, 19, 640));
+			obstaculos.add(new Obstaculo(19, 0, 880, 19));
+			obstaculos.add(new Obstaculo(860, 19, 880, 640));
+			obstaculos.add(new Obstaculo(0, 640, 880, 660));
 			break;
 		}
 

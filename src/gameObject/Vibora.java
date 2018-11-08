@@ -26,47 +26,30 @@ public class Vibora {
 		this.direccion = direccion;
 		cabeza.setPosX(xIni * Arena.TAM_GRAFICOS);
 		cabeza.setPosY(yIni * Arena.TAM_GRAFICOS);
-		// this.posiciones.add(cabeza.getPosX());
-		// this.posiciones.add(cabeza.getPosY());
+
 		if (this.direccion == 1) {
 
 			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + Arena.TAM_GRAFICOS));
-			// this.posiciones.add(cabeza.getPosX());
-			// this.posiciones.add(cabeza.getPosY()-1);
 			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 2 * Arena.TAM_GRAFICOS));
-			// this.posiciones.add(cabeza.getPosX());
-			// this.posiciones.add(cabeza.getPosY()-2);
+			
 		} else if (this.direccion == 2) {
 
 			cuerpito.add(new Cuerpo(cabeza.getPosX() - Arena.TAM_GRAFICOS, cabeza.getPosY()));
-			// this.posiciones.add(cabeza.getPosX()-1);
-			// this.posiciones.add(cabeza.getPosY());
 			cuerpito.add(new Cuerpo(cabeza.getPosX() - 2 * Arena.TAM_GRAFICOS, cabeza.getPosY()));
-			// this.posiciones.add(cabeza.getPosX()-2);
-			// this.posiciones.add(cabeza.getPosY());
-//			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 3*Arena.TAM_GRAFICOS));
-//			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 4*Arena.TAM_GRAFICOS));
-//			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 5*Arena.TAM_GRAFICOS));
-//			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 6*Arena.TAM_GRAFICOS));
-//			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 7*Arena.TAM_GRAFICOS));
-//			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 8*Arena.TAM_GRAFICOS));
-//			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() + 9*Arena.TAM_GRAFICOS));
+			
+
 		} else if (this.direccion == 3) {
 
 			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - Arena.TAM_GRAFICOS));
-			// this.posiciones.add(cabeza.getPosX());
-			// this.posiciones.add(cabeza.getPosY() + 1);
+
 			cuerpito.add(new Cuerpo(cabeza.getPosX(), cabeza.getPosY() - 2 * Arena.TAM_GRAFICOS));
-			// this.posiciones.add(cabeza.getPosX());
-			// this.posiciones.add(cabeza.getPosY() + 2);
+
 		} else if (this.direccion == 4) {
 
 			cuerpito.add(new Cuerpo(cabeza.getPosX() + Arena.TAM_GRAFICOS, cabeza.getPosY()));
-			// this.posiciones.add(cabeza.getPosX() +1);
-			// this.posiciones.add(cabeza.getPosY());
+
 			cuerpito.add(new Cuerpo(cabeza.getPosX() + 2 * Arena.TAM_GRAFICOS, cabeza.getPosY()));
-			// this.posiciones.add(cabeza.getPosX() + 2);
-			// this.posiciones.add(cabeza.getPosY());
+
 		}
 	}
 
@@ -193,7 +176,7 @@ public class Vibora {
 	public void resetearCuerpo() {
 		int n = this.cuerpito.size();
 		// Se fija que borre todos los cuerpitos excepto los ultimos 2
-		for (int i = 0; i < n - 2; i++) {
+		for (int i = 0; i < n; i++) {
 			this.removerCuerpo();
 		}
 
