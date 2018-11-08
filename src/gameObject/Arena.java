@@ -85,39 +85,31 @@ public class Arena {
 			}
 
 		}
+		
+		
 		//Veo si la cabeza de alguna vibora choca con la cabeza de otra vibora
-		for(int i=0;i<this.viboras.size();i++) {
-			for(int j=i+1;j<this.viboras.size();j++) {
-				//Veo si la cabeza de la vibora en la que estoy mirando choca con la cabeza de alguna otra vibora
-				if( ( this.viboras.get(i).getCabeza().getPosX() == this.viboras.get(j).getCabeza().getPosX() ) && ( this.viboras.get(i).getCabeza().getPosY() == this.viboras.get(j).getCabeza().getPosY() ) ) {
-					return this.viboras.get(j).getClass().getSimpleName();
+		int choco=0,indice=0;
+				for(int i=0;i<this.viboras.size();i++) {
+						//Veo si la cabeza de la vibora en la que estoy mirando choca con la cabeza de alguna otra vibora
+						if( ( x== this.viboras.get(i).getCabeza().getPosX() && y == this.viboras.get(i).getCabeza().getPosY())) 
+							choco++;
+						
+						if(choco>=1)
+							indice = i;					
 				}
-			}
-		}
+	
+		if(choco == 2)
+			return this.viboras.get(indice);
+		
 		
 		//Veo si la cabeza de alguna vibora choca con algun cuerpito de otra vibora
-		/* Prototipo, hay que corregirlo
-		for(int i=0;i<this.viboras.size();i++) {
-			for(int j=i+1;j<this.viboras.size();j++) {
-				for(int k=0;k<=this.viboras.get(j).getCuerpito().size();k++) {
-					if( ( this.viboras.get(i).getCabeza().getPosX() == this.viboras.get(j).getCuerpito().get(k).getPosX() ) && ( this.viboras.get(i).getCabeza().getPosY() ==  this.viboras.get(j).getCuerpito().get(k).getPosY() ) ) {
-						return this.viboras.get(j).getClass().getSimpleName();
-					}
+			for(int i=0;i<this.viboras.size();i++) {
+				for(int j = 0;j<this.viboras.get(i).getCuerpito().size();j++) {
+					if((x== this.viboras.get(i).getCuerpito().get(j).getPosX() && y == this.viboras.get(i).getCuerpito().get(j).getPosY()))
+						return 1;
 				}
-				
 			}
-		}*/
-		
-		
-		
-//		for (int i = 0; i < viboras.size(); i++) {
-//			if (viboras.get(i).getCabeza().getPosX() == x && viboras.get(i).getCabeza().getPosY() == y)
-//				return viboras.get(i);
-//			for (int j = 0; j < viboras.get(i).getCuerpito().size(); j++)
-//				if (viboras.get(i).getCuerpito().get(i).getPosX() == x
-//						&& viboras.get(i).getCuerpito().get(i).getPosY() == y)
-//					return viboras.get(i);
-//		}
+			
 		return null;
 	}
 
@@ -131,6 +123,11 @@ public class Arena {
 	public void colisionarConViboraOObstaculo(Vibora vibora) {
 		vibora.setViva(false);
 		vibora.morir();
+	}
+	
+	public void colisionarConViboraOObstaculo(Object vibora) {
+		((Vibora) vibora).setViva(false);
+		((Vibora) vibora).morir();
 	}
 
 	boolean colisionarVibora(Vibora viboraColisionaCon, Vibora vibora) {
@@ -169,7 +166,7 @@ public class Arena {
 			v.setVibora(4, 4, 2);
 			break;
 		case 1:
-			v.setVibora(50, 95, 3);
+			v.setVibora(10, 10, 2);
 			break;
 		case 2:
 			v.setVibora(95, 95, 4);
