@@ -16,16 +16,20 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 	private Arena arena;
 	private Timer t = new Timer(80, this);
 	private Vibora vibora;
+	private Vibora vibora2;
 	private Fruta fruta;
+	private Cuerpo cuerpo;
 	int keyCodeRegistrado;
 	private ArrayList<Obstaculo> obs;
 
 	public ArenaJPanel(Arena a) {
 		setBackground(Color.BLACK);
 		arena = a;
-
+		cuerpo = new Cuerpo(0,0);
 		vibora = new Vibora(0, 0);
+		vibora2 = new Vibora(0, 0);
 		arena.agregarVibora(this.vibora);
+		arena.agregarVibora(this.vibora2);
 		arena.cambiarNivel();
 		fruta = arena.getFrutaActual();
 
@@ -47,7 +51,9 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		pintarFruta(g);
 
 		/* A partir de aca pinto la serpiente */
-		pintarVibora(g);
+		pintarVibora(g,this.vibora);
+		pintarVibora(g,this.vibora2);
+	
 	}
 
 	private void pintarObstaculos(Graphics g) {
@@ -66,20 +72,24 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		g.fillRect(fruta.getPosX(), fruta.getPosY(), Arena.TAM_GRAFICOS, Arena.TAM_GRAFICOS);
 	}
 
-	private void pintarVibora(Graphics g) {
+	private void pintarVibora(Graphics g,Vibora v) {
 		// g.setColor(new Color(255, 83, 76)); si no jode a los ojos dejar este color
 		g.setColor(new Color(255, 0, 0));
-		g.fillRect(vibora.getCabeza().getPosX(), vibora.getCabeza().getPosY(), Arena.TAM_GRAFICOS, Arena.TAM_GRAFICOS);
+		g.fillRect(v.getCabeza().getPosX(), v.getCabeza().getPosY(), Arena.TAM_GRAFICOS, Arena.TAM_GRAFICOS);
 
 		g.setColor(new Color(255, 0, 0));
-		for (Cuerpo pedacitoCuerpo : vibora.getCuerpito()) {
+		for (Cuerpo pedacitoCuerpo : v.getCuerpito()) {
 			g.fillRect(pedacitoCuerpo.getPosX(), pedacitoCuerpo.getPosY(), Arena.TAM_GRAFICOS, Arena.TAM_GRAFICOS);
 		}
+		
+		
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(!vibora.isViva()) {
+	
 			t.stop();
 			System.out.println("Se te murio la vibora");
 		}
@@ -88,10 +98,20 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		
 		Object obj = arena.verColision(vibora.getCabeza().getPosX(), vibora.getCabeza().getPosY());
 		
-		if (obj == fruta)
-			arena.colisionarFruta(vibora);
-		else if (obj!=null) 	
+		if (obj == fruta) arena.colisionarFruta(vibora);
+		else if (obj != null && obj.getClass() == vibora.getClass() ) {
+			
+			arena.colisionarConViboraOObstaculo(obj);
 			arena.colisionarConViboraOObstaculo(vibora);
+		}
+		else if(obj != null && obj.getClass() == cuerpo.getClass()) {
+
+			arena.colisionarConViboraOObstaculo(vibora);
+		}
+		else if(obj!=null)
+			arena.colisionarConViboraOObstaculo(vibora);
+
+			
 		
 		repaint();
 	}
