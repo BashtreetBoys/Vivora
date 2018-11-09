@@ -12,13 +12,21 @@ public class Ventana extends JFrame {
 	
 	private JPanel panelPrincipal;
 	private JPanel panelMenu;
-	private JButton singlePlayer;
+	private JPanel panelLogin;
+	
+	private JButton atrasButton;
+	private JButton loginButton;
+	private JButton singlePlayerButton;
+	private JButton multiPlayerButton;
+	
 	private SinglePlayerJPanel singlePlayerPanel;
-	private JButton multiPlayer;
 	private MultiPlayerJPanel multiPlayerPanel;
+	
 	private JLabel tituloJuego;
+	private JLabel tituloJuego2; //Tuve que hacer esto porque 
+							     //solo aparecia en 1 solo panel
+	
 	private CardLayout cl; 
-	private JButton atras;
 
 	public Ventana() {
 		super("Vivora");
@@ -31,73 +39,95 @@ public class Ventana extends JFrame {
 			e.printStackTrace();
 		}
 		
-		//setBounds(100, 100, 800, 500);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setBounds(300, 100, 800, 500);
+		setResizable(false);
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 				
 		crearComponentes();
 		crearLayout();
 		
 		setContentPane(panelPrincipal);
 		
-		panelMenu.add(Box.createRigidArea(new Dimension(0, 20)));
-		panelMenu.add(tituloJuego);
-		panelMenu.add(Box.createRigidArea(new Dimension(0, 50)));
-		panelMenu.add(singlePlayer);
-		panelMenu.add(Box.createRigidArea(new Dimension(0, 20)));
-		panelMenu.add(multiPlayer);
-		
-		cl.show(panelPrincipal, "Menu");
+		//cl.show(panelPrincipal, "Menu");
 }
 	
 	private void crearLayout() {
 		cl = new CardLayout();
-		panelPrincipal = new JPanel();
+		
 		panelPrincipal.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panelPrincipal.setLayout(cl);
 		
-		panelMenu = new JPanel();
+		panelLogin.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panelLogin.setBackground(new Color(51));
+		panelLogin.setLayout(new BoxLayout(panelLogin, BoxLayout.Y_AXIS));
+		panelLogin.add(Box.createRigidArea(new Dimension(0, 20)));
+		panelLogin.add(tituloJuego);
+		panelLogin.add(Box.createRigidArea(new Dimension(0, 50)));
+		panelLogin.add(loginButton);
+		
 		panelMenu.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panelMenu.setBackground(new Color(51));
 		panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
+		panelMenu.add(Box.createRigidArea(new Dimension(0, 20)));
+		panelMenu.add(tituloJuego2);
+		panelMenu.add(Box.createRigidArea(new Dimension(0, 50)));
+		panelMenu.add(singlePlayerButton);
+		panelMenu.add(Box.createRigidArea(new Dimension(0, 20)));
+		panelMenu.add(multiPlayerButton);
 		
-		singlePlayerPanel = new SinglePlayerJPanel();	//Ahora mismo no tiene nada
-		singlePlayerPanel.add(atras);
-		multiPlayerPanel = new MultiPlayerJPanel();	//Ahora mismo no tiene nada
+		singlePlayerPanel.add(atrasButton);
 		
+		panelPrincipal.add(panelLogin, "Login");
 		panelPrincipal.add(panelMenu, "Menu");
 		panelPrincipal.add(singlePlayerPanel, "Singleplayer");
 		panelPrincipal.add(multiPlayerPanel, "Multiplayer");
 }
 	
 	private void crearComponentes() {
+		panelPrincipal = new JPanel();
+		panelMenu = new JPanel();
+		panelLogin = new JPanel();
+		
 		tituloJuego = new JLabel();
 		tituloJuego.setAlignmentX(Component.CENTER_ALIGNMENT);
 		tituloJuego.setIcon(new ImageIcon("recursos\\Titulo.png"));
 		
+		tituloJuego2 = new JLabel();
+		tituloJuego2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		tituloJuego2.setIcon(new ImageIcon("recursos\\Titulo.png"));
+		
 		Dimension maxSize = new Dimension(200, 50);
-		singlePlayer = new JButton("Singleplayer");
-		singlePlayer.setAlignmentX(Component.CENTER_ALIGNMENT);
-		singlePlayer.setMaximumSize(maxSize);
-		singlePlayer.addActionListener(new BotonActionListener());
+		atrasButton = new JButton("Atras");
+		atrasButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		atrasButton.setMaximumSize(maxSize);
+		atrasButton.addActionListener(new BotonActionListener());
 		
-		multiPlayer = new JButton("Multiplayer");
-		multiPlayer.setAlignmentX(Component.CENTER_ALIGNMENT);
-		multiPlayer.setMaximumSize(maxSize);
-		multiPlayer.addActionListener(new BotonActionListener());
+		loginButton = new JButton("Ingresar");
+		loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		loginButton.setMaximumSize(maxSize);
+		loginButton.addActionListener(new BotonActionListener());
 		
-		atras = new JButton("Atras");
-		atras.setAlignmentX(Component.CENTER_ALIGNMENT);
-		atras.setMaximumSize(maxSize);
-		atras.addActionListener(new BotonActionListener());
+		singlePlayerButton = new JButton("Singleplayer");
+		singlePlayerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		singlePlayerButton.setMaximumSize(maxSize);
+		singlePlayerButton.addActionListener(new BotonActionListener());
+		
+		multiPlayerButton = new JButton("Multiplayer");
+		multiPlayerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		multiPlayerButton.setMaximumSize(maxSize);
+		multiPlayerButton.addActionListener(new BotonActionListener());
+		
+		singlePlayerPanel = new SinglePlayerJPanel();
+		
+		multiPlayerPanel = new MultiPlayerJPanel();	//Ahora mismo no tiene nada
 	}
 	
 	private void lanzarSinglePlayer() {
 		cl.show(panelPrincipal, "Singleplayer");
-		//System.out.println("Falta implementar el lanzador de singleplayer");
 	}
 	
 	private void lanzarMultiPlayer() {
-		cl.show(panelPrincipal, "Multiplayer");
+		//cl.show(panelPrincipal, "Multiplayer");
 		System.out.println("Falta implementar el lanzador de multiplayer");
 	}
 	
@@ -107,14 +137,15 @@ public class Ventana extends JFrame {
 			if(e.getSource() instanceof JButton) {
 				JButton boton = (JButton) e.getSource();
 				
-				if(boton == singlePlayer)
-					Ventana.this.lanzarSinglePlayer();
-				else if(boton == multiPlayer)
-					Ventana.this.lanzarMultiPlayer();
-				else {
-					cl.first(panelPrincipal);					
+				if(boton == loginButton) {
+					new Login(cl, panelPrincipal).setVisible(true);
 				}
-					
+				else if(boton == singlePlayerButton)
+					Ventana.this.lanzarSinglePlayer();
+				else if(boton == multiPlayerButton)
+					Ventana.this.lanzarMultiPlayer();
+				else
+					cl.show(panelPrincipal, "Menu");					
 			}
 		}
 	}

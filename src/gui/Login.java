@@ -13,97 +13,112 @@ import javax.swing.border.EmptyBorder;
 import connection.ConexionHibernate;
 
 public class Login extends JFrame {
-	
+
 	public static void main(String[] args) {
-		new Login().setVisible(true);
+		new Login(new CardLayout(), new JPanel()).setVisible(true);
 	}
 
-	public Login(){
+	private CardLayout clContenedora;
+	private JPanel panelContenedor;
+	private JPanel panelLogin;
+
+	public Login(CardLayout clContenedora, JPanel panelContenedor) {
 		super("Login");
-		setSize(400, 330);
+		setSize(350, 275);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
-		JPanel panel = new JPanel();
-		add(panel);
-		placeComponents(panel);
+
+		this.clContenedora = clContenedora;
+		this.panelContenedor = panelContenedor;
+
+		placeComponents();
+		setContentPane(panelLogin);
 	}
-	
-	private void placeComponents(JPanel panel){
 
-		panel.setLayout(null);
+	private void placeComponents() {
 
-		
-		Dimension maxSizeSep = new Dimension(0,5);
+		panelLogin = new JPanel();
+		panelLogin.setLayout(null);
+//		panelLogin.setBorder(new EmptyBorder(0, 0, 0, 0));
+//		panelLogin.setLayout(new BoxLayout(panelLogin, BoxLayout.Y_AXIS));
+
+//		Dimension maxSizeLabel = new Dimension(100, 20);
+//		Dimension maxSizeText = new Dimension(200, 30);
+//		Dimension maxSizeButton = new Dimension(150, 40);
 
 		JLabel userLabel = new JLabel("User");
-		userLabel.setBounds(40, 20, 80, 25);
-		panel.add(userLabel);
+//		userLabel.setMaximumSize(maxSizeLabel);
+//		userLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		userLabel.setBounds(10, 0, 80, 25);
 
-		panel.add(Box.createRigidArea(maxSizeSep));
-		
+		panelLogin.add(userLabel);
+
 		JTextField userText = new JTextField(20);
-		userText.setBounds(40, 50, 200, 30);
-		panel.add(userText);
+//		userText.setMaximumSize(maxSizeText);
+//		userText.setAlignmentX(Component.CENTER_ALIGNMENT);
+		userText.setBounds(10, 25, 200, 30);
 
-		panel.add(Box.createRigidArea(maxSizeSep));
-		
+		panelLogin.add(userText);
+
 		JLabel passwordLabel = new JLabel("Password");
-		passwordLabel.setBounds(40, 90, 120, 25);
-		panel.add(passwordLabel);
-		
-		JPasswordField passwordText = new JPasswordField(20);
-		passwordText.setBounds(40, 120, 200, 30);
-		panel.add(passwordText);
+//		passwordLabel.setMaximumSize(maxSizeLabel);
+//		passwordLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		passwordLabel.setBounds(10, 65, 120, 25);
 
-		panel.add(Box.createRigidArea(maxSizeSep));
-		
+		panelLogin.add(passwordLabel);
+
+		JPasswordField passwordText = new JPasswordField(20);
+//		passwordText.setMaximumSize(maxSizeText);
+//		passwordText.setAlignmentX(Component.CENTER_ALIGNMENT);
+		passwordText.setBounds(10, 90, 200, 30);
+
+		panelLogin.add(passwordText);
+
 		JButton loginButton = new JButton("Loguearse");
-		loginButton.setBounds(65, 180, 150, 40);
-		panel.add(loginButton);
-		
-		panel.add(Box.createRigidArea(maxSizeSep));
-		
+//		loginButton.setMaximumSize(maxSizeButton);
+//		loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		loginButton.setBounds(35, 135, 150, 40);
+
+		panelLogin.add(loginButton);
+
 		JButton registerButton = new JButton("Registrarse");
-		registerButton.setBounds(65, 235, 150, 40);
-		panel.add(registerButton);
-		
-		Ventana ventana = new Ventana();
+//		registerButton.setMaximumSize(maxSizeButton);
+//		registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		registerButton.setBounds(35, 185, 150, 40);
+
+		panelLogin.add(registerButton);
+
 		RegistrarUsuario regUser = new RegistrarUsuario();
 		ConexionHibernate conexion = new ConexionHibernate();
-		
+
 		ActionListener listenerLoguearse = new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton source = (JButton) e.getSource();	
-				String user = new String(userText.getText());
-				String pass = new String(passwordText.getPassword());
-				
-				
-				if(conexion.verSiExiste(user, pass)) {
-					ventana.setVisible(true);
-					
-				}
-				else {
-					JOptionPane.showMessageDialog(source, "No existe ese usuario con esa contraseña");					
-				}
-				
-			}
-		};
-		
-		ActionListener listenerRegistrarse = new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton source = (JButton) e.getSource();
+				String user = new String(userText.getText());
+				String pass = new String(passwordText.getPassword());
+
+				if (conexion.verSiExiste(user, pass)) {
+					JOptionPane.showMessageDialog(Login.this, "Bienvenido/a " + user, "Logeo exitoso",
+							JOptionPane.PLAIN_MESSAGE);
+					Login.this.dispose();
+					clContenedora.show(panelContenedor, "Menu");
+				} else
+					JOptionPane.showMessageDialog(source, "No existe ese usuario con esa contraseña");
+			}
+		};
+
+		ActionListener listenerRegistrarse = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// JButton source = (JButton) e.getSource();
 				regUser.setVisible(true);
 			}
 		};
 		loginButton.addActionListener(listenerLoguearse);
 		registerButton.addActionListener(listenerRegistrarse);
 	}
-	
-	
 }

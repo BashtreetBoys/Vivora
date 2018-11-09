@@ -30,7 +30,7 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		vibora = new Vibora(0, 0);
 		vibora2 = new Vibora(0, 0);
 		arena.agregarVibora(this.vibora);
-		arena.agregarVibora(this.vibora2);
+		//arena.agregarVibora(this.vibora2);
 		arena.cambiarNivel();
 		fruta = arena.getFrutaActual();
 
@@ -53,7 +53,7 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 
 		/* A partir de aca pinto la serpiente */
 		pintarVibora(g,this.vibora);
-		pintarVibora(g,this.vibora2);
+		//pintarVibora(g,this.vibora2);
 	
 	}
 
@@ -82,8 +82,6 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		for (Cuerpo pedacitoCuerpo : v.getCuerpito()) {
 			g.fillRect(pedacitoCuerpo.getPosX(), pedacitoCuerpo.getPosY(), Arena.TAM_GRAFICOS, Arena.TAM_GRAFICOS);
 		}
-		
-		
 	}
 	
 
@@ -100,8 +98,8 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 
 		Object obj = arena.verColision(vibora.getCabeza().getPosX(), vibora.getCabeza().getPosY());
 		
-
-		if (obj == fruta) arena.colisionarFruta(vibora);
+		if (obj == fruta) 
+			arena.colisionarFruta(vibora);
 		else if (obj != null && obj.getClass() == vibora.getClass() ) {
 			
 			arena.colisionarConViboraOObstaculo(obj);
@@ -115,7 +113,7 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 			arena.colisionarConViboraOObstaculo(vibora);
 			
 		if (lv < 3) {
-			if (arena.getCantidadFrutas() > 3) {
+			if (arena.getCantidadFrutas() > 20) {
 						
 				arena.setLv(++lv);
 				arena.cambiarNivel();

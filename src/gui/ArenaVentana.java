@@ -18,7 +18,7 @@ public class ArenaVentana extends JFrame {
 	public ArenaVentana() {
 		super("Arena");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(200,100,1100,689);
+		setBounds(200,30,1100,689);
 		setResizable(false);
 		//setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		

@@ -17,7 +17,7 @@ public class RegistrarUsuario extends JFrame {
 	
 	public RegistrarUsuario() {
 		super("Registrar");
-		setSize(225, 370);
+		setSize(225, 340);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -36,13 +36,13 @@ public class RegistrarUsuario extends JFrame {
 		
 		//Usuario label+text
 		JLabel userLabel = new JLabel("User");
-		userLabel.setBounds(10, 20, 80, 25);
+		userLabel.setBounds(10, 0, 80, 25);
 		panel.add(userLabel);
 
 		panel.add(Box.createRigidArea(maxSizeSep));
 		
 		JTextField userText = new JTextField(20);
-		userText.setBounds(10, 50, 200, 30);
+		userText.setBounds(10, 25, 200, 30);
 		panel.add(userText);
 		
 		//Fin usuario
@@ -52,13 +52,13 @@ public class RegistrarUsuario extends JFrame {
 		//Contraseña label+text
 		
 		JLabel passwordLabel = new JLabel("Password");
-		passwordLabel.setBounds(10, 80, 80, 25);
+		passwordLabel.setBounds(10, 65, 80, 25);
 		panel.add(passwordLabel);
 		
 		panel.add(Box.createRigidArea(maxSizeSep));
 		
 		JPasswordField passwordText = new JPasswordField(20);
-		passwordText.setBounds(10, 110, 200, 30);
+		passwordText.setBounds(10, 90, 200, 30);
 		panel.add(passwordText);
 		
 		//Fin contraseña
@@ -67,20 +67,20 @@ public class RegistrarUsuario extends JFrame {
 		//ConfirmarContraseña label+text
 		
 		JLabel confirmPasswdLabel = new JLabel("Confirmar Password");
-		confirmPasswdLabel.setBounds(10, 150, 120, 25);
+		confirmPasswdLabel.setBounds(10, 130, 120, 25);
 		panel.add(confirmPasswdLabel);
 		
 		panel.add(Box.createRigidArea(maxSizeSep));
 		
 		JPasswordField confirmPasswdText = new JPasswordField(20);
-		confirmPasswdText.setBounds(10, 180, 200, 30);
+		confirmPasswdText.setBounds(10, 155, 200, 30);
 		panel.add(confirmPasswdText);
 		
 		//Fin confirmar contraseña
 		
 		//Boton registrarse
 		JButton registerButton = new JButton("Registrarse");
-		registerButton.setBounds(35, 230, 150, 40);
+		registerButton.setBounds(35, 200, 150, 40);
 		panel.add(registerButton);
 		
 		//Fin boton registrarse
@@ -88,7 +88,7 @@ public class RegistrarUsuario extends JFrame {
 		
 		//Boton loguearse
 		JButton loginButton = new JButton("Volver al login");
-		loginButton.setBounds(35, 280, 150, 40);
+		loginButton.setBounds(35, 250, 150, 40);
 		panel.add(loginButton);
 		
 		//Fin boton loguearse
