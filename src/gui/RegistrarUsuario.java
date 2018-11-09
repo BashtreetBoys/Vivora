@@ -30,7 +30,6 @@ public class RegistrarUsuario extends JFrame {
 	private void placeComponents(JPanel panel) {
 
 		panel.setLayout(null);
-
 		//Dimensiones de los componentes
 		
 		Dimension maxSizeSep = new Dimension(0,5);

@@ -87,7 +87,7 @@ public class ArenaTest {
 		ArrayList<Vibora> vibs = new ArrayList<Vibora>();
 		Vibora vib = new Vibora(3,2);
 
-		Cabeza cabecita = new Cabeza(20);
+		Cabeza cabecita = new Cabeza(20, 10, 10);
 		cabecita.setPosX(3);
 		cabecita.setPosY(2);
 		
