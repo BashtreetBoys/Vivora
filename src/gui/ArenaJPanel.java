@@ -7,8 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.*;
+
+import org.hibernate.mapping.Collection;
+
 import gameObject.*;
 
 public class ArenaJPanel extends JPanel implements ActionListener {
@@ -16,21 +20,47 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 	private Arena arena;
 	private Timer t = new Timer(80, this);
 	private Vibora vibora;
-	private Vibora vibora2;
+	private Vibora vibora2,vibora3;
 	private Fruta fruta;
 	private Cuerpo cuerpo;
 	int keyCodeRegistrado;
 	private ArrayList<Obstaculo> obs;
 	int lv = 1;
+	ArrayList<Color> listaColores = new ArrayList<Color>(); 
 
 	public ArenaJPanel(Arena a) {
-		setBackground(Color.BLACK);
+
+		listaColores.add(new Color(204, 102, 255));
+		listaColores.add(new Color(204, 51, 255));
+		listaColores.add(new Color(255, 102, 102));
+		listaColores.add(new Color(255, 77, 77));
+		listaColores.add(new Color(77, 255, 136));
+		listaColores.add(new Color(0, 179, 60));
+		listaColores.add(new Color(51, 133, 255));
+		listaColores.add(new Color(26, 117, 255));
+		listaColores.add(new Color(230, 46, 0));
+		listaColores.add(new Color(204, 41, 0));
+		listaColores.add(new Color(255, 184, 77));
+		listaColores.add(new Color(255, 153, 0));
+		listaColores.add(new Color(0, 255, 255));
+		listaColores.add(new Color(0, 179, 179));
+//		Collections.shuffle(listaColores);
+		
+		setBackground(Color.BLACK);		
 		arena = a;
 		cuerpo = new Cuerpo(0,0);
 		vibora = new Vibora(0, 0);
 		vibora2 = new Vibora(0, 0);
+		vibora3 = new Vibora(0, 0);
+		vibora.setColorCabeza(listaColores.get(10));
+		vibora.setColorCuerpo(listaColores.get(11));
+		vibora2.setColorCabeza(listaColores.get(12));
+		vibora2.setColorCuerpo(listaColores.get(13));
+		vibora3.setColorCabeza(listaColores.get(0));
+		vibora3.setColorCuerpo(listaColores.get(1));
 		arena.agregarVibora(this.vibora);
-		//arena.agregarVibora(this.vibora2);
+		arena.agregarVibora(this.vibora2);
+		arena.agregarVibora(this.vibora3);
 		arena.cambiarNivel();
 		fruta = arena.getFrutaActual();
 
@@ -53,15 +83,12 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 
 		/* A partir de aca pinto la serpiente */
 		pintarVibora(g,this.vibora);
-		//pintarVibora(g,this.vibora2);
-	
+		pintarVibora(g,this.vibora2);
+		pintarVibora(g,this.vibora3);
 	}
 
 	private void pintarObstaculos(Graphics g) {
 		g.setColor(Color.BLUE);
-//		El problema por el cual no pintaba los obstaculos era porque 
-//		los valores estaban mal definidos (Xini, Yini, Xfin, Yfin)
-//		Arreglar mas tarde para pintarlos
 		for (Obstaculo obstaculo : obs) {
 			g.fillRect(obstaculo.getPosXini(), obstaculo.getPosYini(), obstaculo.getPosXfin() - obstaculo.getPosXini(),
 					obstaculo.getPosYfin() - obstaculo.getPosYini());
@@ -75,10 +102,10 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 
 	private void pintarVibora(Graphics g,Vibora v) {
 		// g.setColor(new Color(255, 83, 76)); si no jode a los ojos dejar este color
-		g.setColor(new Color(255, 0, 0));
+		g.setColor(v.getColorCabeza());
 		g.fillRect(v.getCabeza().getPosX(), v.getCabeza().getPosY(), Arena.TAM_GRAFICOS, Arena.TAM_GRAFICOS);
 
-		g.setColor(new Color(255, 0, 0));
+		g.setColor(v.getColorCuerpo());
 		for (Cuerpo pedacitoCuerpo : v.getCuerpito()) {
 			g.fillRect(pedacitoCuerpo.getPosX(), pedacitoCuerpo.getPosY(), Arena.TAM_GRAFICOS, Arena.TAM_GRAFICOS);
 		}
@@ -95,7 +122,7 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		}
 
 		vibora.moverVibora(keyCodeRegistrado);
-
+		
 		Object obj = arena.verColision(vibora.getCabeza().getPosX(), vibora.getCabeza().getPosY());
 		
 		if (obj == fruta) 
@@ -111,9 +138,12 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		}
 		else if(obj!=null)
 			arena.colisionarConViboraOObstaculo(vibora);
-			
+		
+		arena.inteligenciaArtificial(vibora2,arena.verColision(vibora2.getCabeza().getPosX(), vibora2.getCabeza().getPosY()));
+		arena.inteligenciaArtificial2(vibora3,arena.verColision(vibora3.getCabeza().getPosX(), vibora3.getCabeza().getPosY()));	
+		
 		if (lv < 3) {
-			if (arena.getCantidadFrutas() > 20) {
+			if (arena.getCantidadFrutas() >= 2) {
 						
 				arena.setLv(++lv);
 				arena.cambiarNivel();
@@ -150,9 +180,5 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 			return KeyEvent.VK_DOWN;
 		else
 			return KeyEvent.VK_LEFT;
-	}
-
-	public void setKeyCodeRegistrado(KeyEvent e) {
-
 	}
 }

@@ -1,5 +1,6 @@
 package gameObject;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -12,6 +13,8 @@ public class Vibora {
 	// private ArrayList posiciones;
 	private int ratioCrecimiento;
 	private boolean viva;
+	private Color colorCabeza,colorCuerpo;
+	
 
 	public Vibora(int xIni, int yIni) {
 		this.velocidad = 1;
@@ -180,6 +183,21 @@ public class Vibora {
 			this.removerCuerpo();
 		}
 
+	}
+
+	public Color getColorCuerpo() {
+		return colorCuerpo;
+	}
+
+	public void setColorCuerpo(Color color) {
+		this.colorCuerpo = color;
+	}
+
+	public Color getColorCabeza() {
+		return colorCabeza;
+	}
+	public void setColorCabeza(Color color) {
+		this.colorCabeza = color;
 	}
 
 }

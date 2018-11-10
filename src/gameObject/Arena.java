@@ -1,5 +1,6 @@
 package gameObject;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -7,13 +8,16 @@ public class Arena {
 	// Esta variable define el tamaño de cada cuadrado que dibujamos en la arena
 	// Puede cambiar a futuro, depende de nuestro gusto
 	public static final int TAM_GRAFICOS = 20;
-	
+
 	private int tamaño;
 	private ArrayList<Vibora> viboras;
 	private ArrayList<Obstaculo> obstaculos;
 	private Fruta frutaActual;
 	private int lv;
 	private int cantidadFrutas;
+	int cont;
+	boolean chocó = false;
+	int dirección = 0;
 
 	public Arena() {
 		super();
@@ -22,29 +26,39 @@ public class Arena {
 		this.obstaculos = new ArrayList<Obstaculo>();
 		this.lv = 1;
 		this.frutaActual = new Fruta("Normal", 0, 0, 1);
+		cont = 0;
 	}
-	
+
 	public void agregarFruta(Fruta frutaNueva) {
 
-		
-//		x = (int) (Math.random() * tamaño) + 1; // Esto esta mal pensado, no concuerda con lo que hacemos
-//		y = (int) (Math.random() * tamaño) + 1;	// Nosotros estamos trabajando en una grilla con celdas de tamaño
-												// Arena.TAM_GRAFICOS
-		/* Random */		
+		// x = (int) (Math.random() * tamaño) + 1; // Esto esta mal pensado, no
+		// concuerda con lo que hacemos
+		// y = (int) (Math.random() * tamaño) + 1; // Nosotros estamos
+		// trabajando en una grilla con celdas de tamaño
+		// Arena.TAM_GRAFICOS
+		/* Random */
 		int fil = (int) Math.round(580 / Arena.TAM_GRAFICOS);
-		int col = (int) Math.round(800/ Arena.TAM_GRAFICOS);
-		
-		int x = new Random().nextInt(col) * Arena.TAM_GRAFICOS; // Nos da una fila random entre las que tenemos
-		int y = new Random().nextInt(fil) * Arena.TAM_GRAFICOS; // Nos da una columna random entre las que tenemos
+		int col = (int) Math.round(760 / Arena.TAM_GRAFICOS);
+
+		int x = new Random().nextInt(col) * Arena.TAM_GRAFICOS; // Nos da una
+																// fila random
+																// entre las que
+																// tenemos
+		int y = new Random().nextInt(fil) * Arena.TAM_GRAFICOS; // Nos da una
+																// columna
+																// random entre
+																// las que
+																// tenemos
 
 		System.out.println(x + ", " + y);
 		/*
-		 * En estos momentos como no puedo setear el tamaño de la arena como quiero a veces la fruta sale 
-		 * de la arena, preguntar como solucionar ese asunto del redimensionado del ArenaJPanel y asi poder
-		 * trabajar con la cantidad correcta de filas y columnas
+		 * En estos momentos como no puedo setear el tamaño de la arena como
+		 * quiero a veces la fruta sale de la arena, preguntar como solucionar
+		 * ese asunto del redimensionado del ArenaJPanel y asi poder trabajar
+		 * con la cantidad correcta de filas y columnas
 		 *
 		 */
-		
+
 		while (verColision(x, y) != null) {
 			x = new Random().nextInt(fil) * Arena.TAM_GRAFICOS;
 			y = new Random().nextInt(col) * Arena.TAM_GRAFICOS;
@@ -56,7 +70,11 @@ public class Arena {
 	public Object verColision(int x, int y) {
 
 		/* Verifica si hay una fruta en la posición */
-		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es una fruta // fruta
+		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es
+																		// una
+																		// fruta
+																		// //
+																		// fruta
 			return frutaActual;
 
 		/* Verifica si hay un obstáculo en la posición */
@@ -66,50 +84,46 @@ public class Arena {
 			int posXfin = obstaculos.get(i).getPosXfin();
 			int posYfin = obstaculos.get(i).getPosYfin();
 
-			/*if (posXini == posYini) {
-				if (posXini == x) {
-					if (y >= posYini && y <= posYfin)
-						return obstaculos.get(i);
-				}
-			}
-
-			if (posXfin == posYfin) {
-				if (posYini == y) {
-					if (x >= posXini && x <= posXfin)
-						return obstaculos.get(i);
-				}
-			}*/
-			//Veo si el punto pasado por parametro esta entre los valores X e Y del obstaculo
-			if( (x >= posXini && x <= posXfin) && ( y >= posYini && y <= posYfin ) ) {
+			/*
+			 * if (posXini == posYini) { if (posXini == x) { if (y >= posYini &&
+			 * y <= posYfin) return obstaculos.get(i); } }
+			 * 
+			 * if (posXfin == posYfin) { if (posYini == y) { if (x >= posXini &&
+			 * x <= posXfin) return obstaculos.get(i); } }
+			 */
+			// Veo si el punto pasado por parametro esta entre los valores X e Y
+			// del obstaculo
+			if ((x >= posXini && x <= posXfin) && (y >= posYini && y <= posYfin)) {
 				return obstaculos.get(i).getClass().getSimpleName();
 			}
 
 		}
-		
-		
-		//Veo si la cabeza de alguna vibora choca con la cabeza de otra vibora
-		int choco=0,indice=0;
-				for(int i=0;i<this.viboras.size();i++) {
-						//Veo si la cabeza de la vibora en la que estoy mirando choca con la cabeza de alguna otra vibora
-						if( ( x== this.viboras.get(i).getCabeza().getPosX() && y == this.viboras.get(i).getCabeza().getPosY())) 
-							choco++;
-						
-						if(choco>=1)
-							indice = i;					
-				}
-	
-		if(choco == 2)
+
+		// Veo si la cabeza de alguna vibora choca con la cabeza de otra vibora
+		int choco = 0, indice = 0;
+		for (int i = 0; i < this.viboras.size(); i++) {
+			// Veo si la cabeza de la vibora en la que estoy mirando choca con
+			// la cabeza de alguna otra vibora
+			if ((x == this.viboras.get(i).getCabeza().getPosX() && y == this.viboras.get(i).getCabeza().getPosY()))
+				choco++;
+
+			if (choco >= 1)
+				indice = i;
+		}
+
+		if (choco == 2)
 			return this.viboras.get(indice);
-		
-		
-		//Veo si la cabeza de alguna vibora choca con algun cuerpito de otra vibora
-			for(int i=0;i<this.viboras.size();i++) {
-				for(int j = 0;j<this.viboras.get(i).getCuerpito().size();j++) {
-					if((x== this.viboras.get(i).getCuerpito().get(j).getPosX() && y == this.viboras.get(i).getCuerpito().get(j).getPosY()))
-						return 1;
-				}
+
+		// Veo si la cabeza de alguna vibora choca con algun cuerpito de otra
+		// vibora
+		for (int i = 0; i < this.viboras.size(); i++) {
+			for (int j = 0; j < this.viboras.get(i).getCuerpito().size(); j++) {
+				if ((x == this.viboras.get(i).getCuerpito().get(j).getPosX()
+						&& y == this.viboras.get(i).getCuerpito().get(j).getPosY()))
+					return 1;
 			}
-			
+		}
+
 		return null;
 	}
 
@@ -124,7 +138,7 @@ public class Arena {
 		vibora.setViva(false);
 		vibora.morir();
 	}
-	
+
 	public void colisionarConViboraOObstaculo(Object vibora) {
 		((Vibora) vibora).setViva(false);
 		((Vibora) vibora).morir();
@@ -152,10 +166,10 @@ public class Arena {
 		return false;
 	}
 
-	public void agregarVibora(Vibora v, int x, int y, int dir)	{
+	public void agregarVibora(Vibora v, int x, int y, int dir) {
 		v.setVibora(x, y, dir);
 	}
-	
+
 	public void agregarVibora(Vibora v) {
 		viboras.add(v);
 		int n;
@@ -169,10 +183,10 @@ public class Arena {
 			v.setVibora(10, 10, 2);
 			break;
 		case 2:
-			v.setVibora(95, 95, 4);
+			v.setVibora(20, 20, 2);
 			break;
 		case 3:
-			v.setVibora(95, 50, 4);
+			v.setVibora(95, 50, 3);
 			break;
 		case 4:
 			v.setVibora(95, 5, 4);
@@ -292,4 +306,62 @@ public class Arena {
 	public ArrayList<Obstaculo> getObstaculos() {
 		return obstaculos;
 	}
+
+	public void inteligenciaArtificial(Vibora vibora2, Object obj2) {
+
+		if (cont <= 5)
+			vibora2.moverVibora(KeyEvent.VK_RIGHT);
+		else if (cont >= 6 && cont <= 10)
+			vibora2.moverVibora(KeyEvent.VK_DOWN);
+		else if (cont >= 11 && cont <= 15)
+			vibora2.moverVibora(KeyEvent.VK_LEFT);
+		else if (cont >= 16 && cont <= 20)
+			vibora2.moverVibora(KeyEvent.VK_UP);
+		else {
+			cont = 0;
+			vibora2.moverVibora(KeyEvent.VK_RIGHT);
+		}
+		cont++;
+
+		if (obj2 == getFrutaActual())
+			colisionarFruta(vibora2);
+		else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
+
+			colisionarConViboraOObstaculo(obj2);
+			colisionarConViboraOObstaculo(vibora2);
+		} else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
+
+			colisionarConViboraOObstaculo(vibora2);
+		} else if (obj2 != null)
+			colisionarConViboraOObstaculo(vibora2);
+	}
+	
+	public void inteligenciaArtificial2(Vibora vibora2, Object obj2) {
+
+		if (cont <= 15)
+			vibora2.moverVibora(KeyEvent.VK_RIGHT);
+		else if (cont >= 16 && cont <= 20)
+			vibora2.moverVibora(KeyEvent.VK_UP);
+		else if (cont >= 21 && cont <= 23)
+			vibora2.moverVibora(KeyEvent.VK_LEFT);
+		else if (cont >= 24 && cont <= 29)
+			vibora2.moverVibora(KeyEvent.VK_DOWN);
+		else {
+			cont = 0;
+			vibora2.moverVibora(KeyEvent.VK_RIGHT);
+		}
+
+		if (obj2 == getFrutaActual())
+			colisionarFruta(vibora2);
+		else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
+
+			colisionarConViboraOObstaculo(obj2);
+			colisionarConViboraOObstaculo(vibora2);
+		} else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
+
+			colisionarConViboraOObstaculo(vibora2);
+		} else if (obj2 != null)
+			colisionarConViboraOObstaculo(vibora2);
+	}
+	
 }
