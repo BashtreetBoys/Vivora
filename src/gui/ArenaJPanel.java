@@ -118,7 +118,7 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 		if (!vibora.isViva()) {
 
 			t.stop();
-			System.out.println("Se te murio la vibora");
+//			System.out.println("Se te murio la vibora");
 		}
 
 		vibora.moverVibora(keyCodeRegistrado);

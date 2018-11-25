@@ -1,6 +1,5 @@
 package gameObject;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,7 +8,6 @@ public class Arena {
 	// Puede cambiar a futuro, depende de nuestro gusto
 	public static final int TAM_GRAFICOS = 20;
 
-	private int tamaño;
 	private ArrayList<Vibora> viboras;
 	private ArrayList<Obstaculo> obstaculos;
 	private Fruta frutaActual;
@@ -21,7 +19,6 @@ public class Arena {
 
 	public Arena() {
 		super();
-		this.tamaño = 100;
 		this.viboras = new ArrayList<Vibora>();
 		this.obstaculos = new ArrayList<Obstaculo>();
 		this.lv = 1;
@@ -31,38 +28,16 @@ public class Arena {
 
 	public void agregarFruta(Fruta frutaNueva) {
 
-		// x = (int) (Math.random() * tamaño) + 1; // Esto esta mal pensado, no
-		// concuerda con lo que hacemos
-		// y = (int) (Math.random() * tamaño) + 1; // Nosotros estamos
-		// trabajando en una grilla con celdas de tamaño
-		// Arena.TAM_GRAFICOS
-		/* Random */
-		int fil = (int) Math.round(580 / Arena.TAM_GRAFICOS);
-		int col = (int) Math.round(760 / Arena.TAM_GRAFICOS);
+		/** Random */
+		int fil = (int) Math.round(880 / Arena.TAM_GRAFICOS), 
+			col = (int) Math.round(640 / Arena.TAM_GRAFICOS), 
+			x, y;
 
-		int x = new Random().nextInt(col) * Arena.TAM_GRAFICOS; // Nos da una
-																// fila random
-																// entre las que
-																// tenemos
-		int y = new Random().nextInt(fil) * Arena.TAM_GRAFICOS; // Nos da una
-																// columna
-																// random entre
-																// las que
-																// tenemos
-
-		System.out.println(x + ", " + y);
-		/*
-		 * En estos momentos como no puedo setear el tamaño de la arena como
-		 * quiero a veces la fruta sale de la arena, preguntar como solucionar
-		 * ese asunto del redimensionado del ArenaJPanel y asi poder trabajar
-		 * con la cantidad correcta de filas y columnas
-		 *
-		 */
-
-		while (verColision(x, y) != null) {
+		do {
 			x = new Random().nextInt(fil) * Arena.TAM_GRAFICOS;
 			y = new Random().nextInt(col) * Arena.TAM_GRAFICOS;
-		}
+		} while ((verColision(x, y) != null));
+
 		frutaNueva.setPosX(x);
 		frutaNueva.setPosY(y);
 	}
@@ -70,11 +45,7 @@ public class Arena {
 	public Object verColision(int x, int y) {
 
 		/* Verifica si hay una fruta en la posición */
-		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())// si es
-																		// una
-																		// fruta
-																		// //
-																		// fruta
+		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())
 			return frutaActual;
 
 		/* Verifica si hay un obstáculo en la posición */
@@ -123,7 +94,6 @@ public class Arena {
 					return 1;
 			}
 		}
-
 		return null;
 	}
 
@@ -267,14 +237,6 @@ public class Arena {
 		this.agregarFruta(frutaActual);
 	}
 
-	public int getTamaño() {
-		return tamaño;
-	}
-
-	public void setTamaño(int tamaño) {
-		this.tamaño = tamaño;
-	}
-
 	public ArrayList<Vibora> getViboras() {
 		return viboras;
 	}
@@ -307,55 +269,56 @@ public class Arena {
 		return obstaculos;
 	}
 
-	
-//	public enum direccion
-//	{
-//		ARRIBA, DERECHA, ABAJO, IZQUIERDA
-//	}
-	
+	// public enum direccion
+	// {
+	// ARRIBA, DERECHA, ABAJO, IZQUIERDA
+	// }
+
 	public void inteligenciaArtificial(Vibora v, Object obj2) {
-		
-		if (v.getCabeza().getPosX() < frutaActual.getPosX()){
-			if (v.getCabeza().getPosY()  > frutaActual.getPosY())
+
+		if (v.getCabeza().getPosX() < frutaActual.getPosX()) {
+			if (v.getCabeza().getPosY() > frutaActual.getPosY())
 				v.setDireccion(1);
-			else if (v.getCabeza().getPosY()  < frutaActual.getPosY())
+			else if (v.getCabeza().getPosY() < frutaActual.getPosY())
 				v.setDireccion(3);
-			else if(v.getDireccion() == 4){
+			else if (v.getDireccion() == 4) {
 				v.setDireccion(1);
-			}else {
+			} else {
 				v.setDireccion(2);
 			}
-		}
-		else if(v.getCabeza().getPosX() > frutaActual.getPosX()){ 
-				if (v.getCabeza().getPosY()  > frutaActual.getPosY())
-					v.setDireccion(1);
-				else if(v.getCabeza().getPosY()  < frutaActual.getPosY())
-					v.setDireccion(3);
-				else if(v.getDireccion() == 2){
-					v.setDireccion(3);
-				}else{
-					v.setDireccion(4);
+		} else if (v.getCabeza().getPosX() > frutaActual.getPosX()) {
+			if (v.getCabeza().getPosY() > frutaActual.getPosY())
+				v.setDireccion(1);
+			else if (v.getCabeza().getPosY() < frutaActual.getPosY())
+				v.setDireccion(3);
+			else if (v.getDireccion() == 2) {
+				v.setDireccion(3);
+			} else {
+				v.setDireccion(4);
 			}
 		}
 
+		// if((verColision(v.getCabeza().getPosX()+TAM_GRAFICOS,
+		// v.getCabeza().getPosY()+TAM_GRAFICOS)) != null && v.getDireccion() !=
+		// 1)
+		// v.setDireccion(1);
+
 		v.moverVibora(v.getDireccion());
-		
+
 		if (obj2 == getFrutaActual())
 			colisionarFruta(v);
 		
-		else if (obj2 != null && obj2.getClass() == v.getClass()) {
-			
-			colisionarConViboraOObstaculo(obj2);
-			colisionarConViboraOObstaculo(v);
-		} else if (obj2 != null && obj2.getClass() == v.getClass()) {
-
-			colisionarConViboraOObstaculo(v);
-		} else if (obj2 != null)
-			colisionarConViboraOObstaculo(v);
+		 else if (obj2 != null && obj2.getClass() == v.getClass()) {
+			 colisionarConViboraOObstaculo(obj2);
+			 colisionarConViboraOObstaculo(v);
+		 } else if (obj2 != null && obj2.getClass() == v.getClass()) {
+			 colisionarConViboraOObstaculo(v);
+		 } else if (obj2 != null)
+			 colisionarConViboraOObstaculo(v);
 	}
-	
-public void inteligenciaArtificialCuadrado(Vibora vibora2, Object obj2) {
-		
+
+	public void inteligenciaArtificialCuadrado(Vibora vibora2, Object obj2) {
+
 		if (cont <= 2)
 			vibora2.setDireccion(2);
 		else if (cont >= 3 && cont <= 5)
@@ -364,23 +327,25 @@ public void inteligenciaArtificialCuadrado(Vibora vibora2, Object obj2) {
 			vibora2.setDireccion(4);
 		else if (cont > 8 && cont <= 11)
 			vibora2.setDireccion(1);
-		else {cont = 0;vibora2.setDireccion(2);}
+		else {
+			cont = 0;
+			vibora2.setDireccion(2);
+		}
 
 		vibora2.moverVibora(vibora2.getDireccion());
-		
+
 		cont++;
-		
+
 		if (obj2 == getFrutaActual())
 			colisionarFruta(vibora2);
 		else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
-			
+
 			colisionarConViboraOObstaculo(obj2);
 			colisionarConViboraOObstaculo(vibora2);
 		} else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
-			
+
 			colisionarConViboraOObstaculo(vibora2);
 		} else if (obj2 != null)
 			colisionarConViboraOObstaculo(vibora2);
 	}
-
 }
