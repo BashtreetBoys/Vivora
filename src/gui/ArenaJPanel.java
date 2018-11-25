@@ -140,7 +140,7 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 			arena.colisionarConViboraOObstaculo(vibora);
 		
 		arena.inteligenciaArtificial(vibora2,arena.verColision(vibora2.getCabeza().getPosX(), vibora2.getCabeza().getPosY()));
-		arena.inteligenciaArtificial2(vibora3,arena.verColision(vibora3.getCabeza().getPosX(), vibora3.getCabeza().getPosY()));	
+		arena.inteligenciaArtificialCuadrado(vibora3,arena.verColision(vibora3.getCabeza().getPosX(), vibora3.getCabeza().getPosY()));	
 		
 		if (lv < 3) {
 			if (arena.getCantidadFrutas() >= 2) {

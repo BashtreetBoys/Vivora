@@ -120,6 +120,10 @@ public class Vibora {
 	public int getDireccion() {
 		return direccion;
 	}
+	
+	public void setDireccion(int direccion) {
+		this.direccion = direccion;
+	}
 
 	public void removerCuerpo() {
 		this.cuerpito.remove(this.cuerpito.size() - 1);

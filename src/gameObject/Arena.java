@@ -307,61 +307,80 @@ public class Arena {
 		return obstaculos;
 	}
 
-	public void inteligenciaArtificial(Vibora vibora2, Object obj2) {
-
-		if (cont <= 5)
-			vibora2.moverVibora(KeyEvent.VK_RIGHT);
-		else if (cont >= 6 && cont <= 10)
-			vibora2.moverVibora(KeyEvent.VK_DOWN);
-		else if (cont >= 11 && cont <= 15)
-			vibora2.moverVibora(KeyEvent.VK_LEFT);
-		else if (cont >= 16 && cont <= 20)
-			vibora2.moverVibora(KeyEvent.VK_UP);
-		else {
-			cont = 0;
-			vibora2.moverVibora(KeyEvent.VK_RIGHT);
+	
+//	public enum direccion
+//	{
+//		ARRIBA, DERECHA, ABAJO, IZQUIERDA
+//	}
+	
+	public void inteligenciaArtificial(Vibora v, Object obj2) {
+		
+		if (v.getCabeza().getPosX() < frutaActual.getPosX()){
+			if (v.getCabeza().getPosY()  > frutaActual.getPosY())
+				v.setDireccion(1);
+			else if (v.getCabeza().getPosY()  < frutaActual.getPosY())
+				v.setDireccion(3);
+			else if(v.getDireccion() == 4){
+				v.setDireccion(1);
+			}else {
+				v.setDireccion(2);
+			}
 		}
+		else if(v.getCabeza().getPosX() > frutaActual.getPosX()){ 
+				if (v.getCabeza().getPosY()  > frutaActual.getPosY())
+					v.setDireccion(1);
+				else if(v.getCabeza().getPosY()  < frutaActual.getPosY())
+					v.setDireccion(3);
+				else if(v.getDireccion() == 2){
+					v.setDireccion(3);
+				}else{
+					v.setDireccion(4);
+			}
+		}
+
+		v.moverVibora(v.getDireccion());
+		
+		if (obj2 == getFrutaActual())
+			colisionarFruta(v);
+		
+		else if (obj2 != null && obj2.getClass() == v.getClass()) {
+			
+			colisionarConViboraOObstaculo(obj2);
+			colisionarConViboraOObstaculo(v);
+		} else if (obj2 != null && obj2.getClass() == v.getClass()) {
+
+			colisionarConViboraOObstaculo(v);
+		} else if (obj2 != null)
+			colisionarConViboraOObstaculo(v);
+	}
+	
+public void inteligenciaArtificialCuadrado(Vibora vibora2, Object obj2) {
+		
+		if (cont <= 2)
+			vibora2.setDireccion(2);
+		else if (cont >= 3 && cont <= 5)
+			vibora2.setDireccion(3);
+		else if (cont > 5 && cont <= 8)
+			vibora2.setDireccion(4);
+		else if (cont > 8 && cont <= 11)
+			vibora2.setDireccion(1);
+		else {cont = 0;vibora2.setDireccion(2);}
+
+		vibora2.moverVibora(vibora2.getDireccion());
+		
 		cont++;
-
+		
 		if (obj2 == getFrutaActual())
 			colisionarFruta(vibora2);
 		else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
-
+			
 			colisionarConViboraOObstaculo(obj2);
 			colisionarConViboraOObstaculo(vibora2);
 		} else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
-
+			
 			colisionarConViboraOObstaculo(vibora2);
 		} else if (obj2 != null)
 			colisionarConViboraOObstaculo(vibora2);
 	}
-	
-	public void inteligenciaArtificial2(Vibora vibora2, Object obj2) {
 
-		if (cont <= 15)
-			vibora2.moverVibora(KeyEvent.VK_RIGHT);
-		else if (cont >= 16 && cont <= 20)
-			vibora2.moverVibora(KeyEvent.VK_UP);
-		else if (cont >= 21 && cont <= 23)
-			vibora2.moverVibora(KeyEvent.VK_LEFT);
-		else if (cont >= 24 && cont <= 29)
-			vibora2.moverVibora(KeyEvent.VK_DOWN);
-		else {
-			cont = 0;
-			vibora2.moverVibora(KeyEvent.VK_RIGHT);
-		}
-
-		if (obj2 == getFrutaActual())
-			colisionarFruta(vibora2);
-		else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
-
-			colisionarConViboraOObstaculo(obj2);
-			colisionarConViboraOObstaculo(vibora2);
-		} else if (obj2 != null && obj2.getClass() == vibora2.getClass()) {
-
-			colisionarConViboraOObstaculo(vibora2);
-		} else if (obj2 != null)
-			colisionarConViboraOObstaculo(vibora2);
-	}
-	
 }
