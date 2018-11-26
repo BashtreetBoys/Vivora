@@ -89,7 +89,7 @@ public class Login extends JFrame {
 
 		panelLogin.add(registerButton);
 
-		RegistrarUsuario regUser = new RegistrarUsuario();
+		//RegistrarUsuario regUser = new RegistrarUsuario();
 		ConexionHibernate conexion = new ConexionHibernate();
 
 		ActionListener listenerLoguearse = new ActionListener() {
@@ -115,7 +115,7 @@ public class Login extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// JButton source = (JButton) e.getSource();
-				regUser.setVisible(true);
+				//regUser.setVisible(true);
 			}
 		};
 		loginButton.addActionListener(listenerLoguearse);
