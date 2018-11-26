@@ -100,7 +100,7 @@ public class ArenaTest {
 		
 		//Testeo la colision de una vibora con una fruta
 		//System.out.println(arenita.verColision(0,0));
-		Assert.assertEquals("Fruta",arenita.verColision(0, 0));
+		Assert.assertEquals("Fruta",arenita.verColision(0, 0,vib));
 	}
 	
 	@Test
@@ -113,7 +113,7 @@ public class ArenaTest {
 		
 		//v.setVibora(80, 80, 2); vib esta en 80 x 80 y 2 direccion
 		
-		Assert.assertEquals("Obstaculo",arenita.verColision(1140, 20));
+		Assert.assertEquals("Obstaculo",arenita.verColision(1140, 20,vib));
 		
 	}
 	
@@ -132,7 +132,7 @@ public class ArenaTest {
 		Assert.assertEquals(2, vib2.getCabeza().getPosX());
 		
 		//Veo si chocaron
-		Assert.assertEquals("Vibora",arenita.verColision(2,2));
+		Assert.assertEquals("Vibora",arenita.verColision(2,2,vib));
 	}
 	/* Hay que corregir el encuentro con los cuerpitos
 	@Test

@@ -123,32 +123,26 @@ public class ArenaJPanel extends JPanel implements ActionListener {
 
 		vibora.moverVibora(keyCodeRegistrado);
 		
-		Object obj = arena.verColision(vibora.getCabeza().getPosX(), vibora.getCabeza().getPosY());
-		
-		if (obj == fruta) 
+		Object obj = arena.verColision(vibora.getCabeza().getPosX(), vibora.getCabeza().getPosY(),vibora);
+	/*	
+		if (obj == fruta) //fruta
 			arena.colisionarFruta(vibora);
-		else if (obj != null && obj.getClass() == vibora.getClass() ) {
+		else if (obj != null && obj.getClass() == vibora.getClass() ) {//dos viboras distintas
 			
 			arena.colisionarConViboraOObstaculo(obj);
 			arena.colisionarConViboraOObstaculo(vibora);
 		}
-		else if(obj != null && obj.getClass() == cuerpo.getClass()) {
+		else if(obj != null && obj.getClass() == cuerpo.getClass()) {//vibora con cuerpo
 
 			arena.colisionarConViboraOObstaculo(vibora);
 		}
-		else if(obj!=null)
+		else if(obj!=null) //obstaculo
 			arena.colisionarConViboraOObstaculo(vibora);
+		*/
+		arena.inteligenciaArtificial(vibora2,arena.verColision(vibora2.getCabeza().getPosX(), vibora2.getCabeza().getPosY(),vibora2));
+		arena.inteligenciaArtificialCuadrado(vibora3,arena.verColision(vibora3.getCabeza().getPosX(), vibora3.getCabeza().getPosY(),vibora3));	
 		
-		arena.inteligenciaArtificial(vibora2,arena.verColision(vibora2.getCabeza().getPosX(), vibora2.getCabeza().getPosY()));
-		arena.inteligenciaArtificialCuadrado(vibora3,arena.verColision(vibora3.getCabeza().getPosX(), vibora3.getCabeza().getPosY()));	
-		
-		if (lv < 3) {
-			if (arena.getCantidadFrutas() >= 2) {
-						
-				arena.setLv(++lv);
-				arena.cambiarNivel();
-			}
-		}
+
 		
 		repaint();
 	}

@@ -24,6 +24,7 @@ public class Arena {
 		this.lv = 1;
 		this.frutaActual = new Fruta("Normal", 0, 0, 1);
 		cont = 0;
+		
 	}
 
 	public void agregarFruta(Fruta frutaNueva) {
@@ -36,17 +37,23 @@ public class Arena {
 		do {
 			x = new Random().nextInt(fil) * Arena.TAM_GRAFICOS;
 			y = new Random().nextInt(col) * Arena.TAM_GRAFICOS;
-		} while ((verColision(x, y) != null));
+		} while ((verColision(x, y,null)));
 
 		frutaNueva.setPosX(x);
 		frutaNueva.setPosY(y);
 	}
 
-	public Object verColision(int x, int y) {
-
+	public boolean verColision(int x, int y,Vibora vibActual) {
+		boolean band = false;
 		/* Verifica si hay una fruta en la posición */
-		if (x == frutaActual.getPosX() && y == frutaActual.getPosY())
-			return frutaActual;
+		if (x == frutaActual.getPosX() && y == frutaActual.getPosY()) {
+			//return frutaActual;
+			if(vibActual !=null) {
+			this.colisionarFruta(vibActual);
+			}
+			band =  true;
+		}
+			
 
 		/* Verifica si hay un obstáculo en la posición */
 		for (int i = 0; i < obstaculos.size(); i++) {
@@ -65,7 +72,11 @@ public class Arena {
 			// Veo si el punto pasado por parametro esta entre los valores X e Y
 			// del obstaculo
 			if ((x >= posXini && x <= posXfin) && (y >= posYini && y <= posYfin)) {
-				return obstaculos.get(i).getClass().getSimpleName();
+				//return obstaculos.get(i).getClass().getSimpleName();
+				if(vibActual !=null) {
+				this.colisionarConViboraOObstaculo(vibActual);
+				}
+				band =  true;
 			}
 
 		}
@@ -82,19 +93,39 @@ public class Arena {
 				indice = i;
 		}
 
-		if (choco == 2)
-			return this.viboras.get(indice);
+		if (choco == 2) {
+			if(vibActual !=null) {
+			this.colisionarConViboraOObstaculo(vibActual);
+			this.colisionarConViboraOObstaculo(this.viboras.get(indice));
+			}
+			band = true;
+			//return this.viboras.get(indice);
+		}
+			
 
 		// Veo si la cabeza de alguna vibora choca con algun cuerpito de otra
 		// vibora
 		for (int i = 0; i < this.viboras.size(); i++) {
 			for (int j = 0; j < this.viboras.get(i).getCuerpito().size(); j++) {
 				if ((x == this.viboras.get(i).getCuerpito().get(j).getPosX()
-						&& y == this.viboras.get(i).getCuerpito().get(j).getPosY()))
-					return 1;
+						&& y == this.viboras.get(i).getCuerpito().get(j).getPosY())) {
+					//return 1;
+					if(vibActual !=null) {
+					this.colisionarConViboraOObstaculo(vibActual);
+					}
+					band = true;
+				}
+					
 			}
 		}
-		return null;
+		if (this.lv < 3 && vibActual !=null) {
+			if (this.cantidadFrutas>= 2) {
+						
+				this.setLv(++lv);
+				this.cambiarNivel();
+			}
+		}
+		return band;
 	}
 
 	public void colisionarFruta(Vibora vibora) {
